@@ -1,0 +1,7 @@
+{
+  "status": "pending_A_definition",
+  "enrollment": [],
+  "enrollment_plus_sem1": [],
+  "excluded_fields_with_reasons": {},
+  "note": "A must fill actual column names and document availability before B starts. Target, row_id and split flags must never be predictors."
+}

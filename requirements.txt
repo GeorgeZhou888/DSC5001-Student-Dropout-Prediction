@@ -1,0 +1,6 @@
+# Bootstrap dependencies only; A must export environment/requirements-lock.txt.
+numpy
+pandas
+scikit-learn
+matplotlib
+joblib

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "proposed_until_A_acceptance",
+  "course": "DSC5001",
+  "timezone": "Asia/Hong_Kong",
+  "random_seed": 42,
+  "target_column": "Target",
+  "labels": [
+    "Dropout",
+    "Enrolled",
+    "Graduate"
+  ],
+  "row_id_column": "row_id",
+  "test_fraction": 0.2,
+  "outer_split": {
+    "stratified": true,
+    "shuffle": true
+  },
+  "cross_validation": {
+    "n_splits": 5,
+    "stratified": true,
+    "shuffle": true,
+    "fold_column": "cv_fold"
+  },
+  "split_manifest": "data/splits/split_manifest.csv",
+  "processed_data": "data/processed/students.csv",
+  "feature_sets_file": "configs/feature_sets.json",
+  "models": [
+    "logistic_regression",
+    "decision_tree",
+    "random_forest"
+  ],
+  "baseline": "majority_class",
+  "selection_metric": "macro_f1",
+  "additional_metrics": [
+    "dropout_precision",
+    "dropout_recall"
+  ],
+  "learned_preprocessing": "fit_within_each_training_fold",
+  "test_usage": "final_evaluation_only_after_model_freeze",
+  "deadlines": {
+    "A": "2026-11-05T23:59:00+08:00",
+    "B": "2026-11-12T23:59:00+08:00",
+    "C": "2026-11-19T23:59:00+08:00",
+    "D_E": "2026-11-26T23:59:00+08:00",
+    "leader_final_check": "2026-11-27T23:59:00+08:00",
+    "course_submission": "2026-11-28T23:59:00+08:00"
+  }
+}
