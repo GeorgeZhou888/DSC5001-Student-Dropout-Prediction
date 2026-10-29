@@ -1,0 +1,25 @@
+{
+  "scope": "training_only",
+  "n": 3539,
+  "train_row_ids_sha256": "484976319cc5db5ec262bd7c8bb564a7b709f210daac956be2327c5cd4489fe2",
+  "figures": [
+    "01_train_class_distribution.png",
+    "02_train_enrollment_distributions.png",
+    "03_train_sem1_distributions.png",
+    "04_train_sem1_grade_by_outcome.png"
+  ],
+  "numeric_columns": [
+    "Application order",
+    "Previous qualification (grade)",
+    "Admission grade",
+    "Age at enrollment",
+    "Curricular units 1st sem (credited)",
+    "Curricular units 1st sem (enrolled)",
+    "Curricular units 1st sem (evaluations)",
+    "Curricular units 1st sem (approved)",
+    "Curricular units 1st sem (grade)",
+    "Curricular units 1st sem (without evaluations)"
+  ],
+  "outcome_column": "Target",
+  "no_model_fitted": true
+}

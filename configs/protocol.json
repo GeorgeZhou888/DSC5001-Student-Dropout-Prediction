@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "proposed_until_A_acceptance",
+  "status": "ready",
   "course": "DSC5001",
   "timezone": "Asia/Hong_Kong",
   "random_seed": 42,
@@ -45,5 +45,8 @@
     "D_E": "2026-11-26T23:59:00+08:00",
     "leader_final_check": "2026-11-27T23:59:00+08:00",
     "course_submission": "2026-11-28T23:59:00+08:00"
-  }
+  },
+  "row_id_policy": "S000001 onward in original raw CSV record order; assigned before column-name trimming",
+  "split_row_order": "Outer positions in raw record order; sort training positions before fixed StratifiedKFold",
+  "cv_fold_semantics": "Training row with fold=k is validation in iteration k; test rows have no fold"
 }

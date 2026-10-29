@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_independent_verification",
+  "generated_at_hk": "2026-10-29T18:04:17+08:00",
+  "source": {
+    "name": "Predict Students' Dropout and Academic Success",
+    "url": "https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success",
+    "doi": "10.24432/C5MC89",
+    "license": "CC BY 4.0",
+    "citation": "Realinho, V., Vieira Martins, M., Machado, J., & Baptista, L. (2021). Predict Students' Dropout and Academic Success [Dataset]. UCI Machine Learning Repository.",
+    "acquisition": "Manual download of the UCI archive; original download time not separately recorded"
+  },
+  "input_baseline_commit": "986729eff3c818fff469aac46f9e523b3f6ca2a1",
+  "repository_head_at_run": "986729eff3c818fff469aac46f9e523b3f6ca2a1",
+  "row_counts": {
+    "raw": 4424,
+    "processed": 4424,
+    "removed": 0,
+    "train": 3539,
+    "test": 885
+  },
+  "changes": [
+    "Add stable row_id before any column-name normalization",
+    "Strip leading/trailing whitespace from column names only",
+    "Keep all rows, raw predictor values, zero grades and encoded unknown categories"
+  ],
+  "split": {
+    "seed": 42,
+    "test_fraction": 0.2,
+    "stratified": true,
+    "cv_folds": 5,
+    "algorithm": "train_test_split; sorted training positions; StratifiedKFold",
+    "sklearn_version": "1.9.1",
+    "numpy_version": "2.5.4"
+  },
+  "core_files_for_reproduction": [
+    "data/processed/students.csv",
+    "data/splits/split_manifest.csv",
+    "configs/feature_sets.json",
+    "configs/protocol.json",
+    "results/A_data/data_dictionary.csv",
+    "results/A_data/train_class_summary.csv",
+    "results/A_data/train_numeric_summary.csv",
+    "results/A_data/train_sem1_by_outcome.csv",
+    "results/A_data/split_summary.csv"
+  ],
+  "files": {
+    "configs/feature_sets.json": {
+      "sha256": "6267ce371bf3e02dc95427913184c452c475721dcf7ec3289ace17bc24126a4e",
+      "bytes": 4489
+    },
+    "configs/protocol.json": {
+      "sha256": "ae41689c85f2eddfae5ca876b781e293cfc07c5f5edf1a985d3191e74cc5c0ea",
+      "bytes": 1577
+    },
+    "data/processed/students.csv": {
+      "sha256": "c8a87c649896f4567f7a45509d38631316d5dc8805860fb058d5386495509996",
+      "bytes": 564198
+    },
+    "data/raw/data.csv": {
+      "sha256": "3ef126de5cefff26eb11fbb4237f1a1401cb64b488e2f1d598c23cedeb4c45ae",
+      "bytes": 533230
+    },
+    "data/raw/uci_metadata.json": {
+      "sha256": "c48a8f6303ccf2a5ade930fe6e85c53df209c2933f39910344c56a53a8641d5e",
+      "bytes": 19188
+    },
+    "data/splits/split_manifest.csv": {
+      "sha256": "2c0094e4359d9d1310f0dd4e9bae69440f5c631f101bada67ec4dc028a3db629",
+      "bytes": 69043
+    },
+    "environment/python-version.txt": {
+      "sha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+      "bytes": 14
+    },
+    "environment/requirements-lock.txt": {
+      "sha256": "f309cd7b509c6bdcef7a6e638f727857b1c085e78d78a8d1023c1ea9466e7bf6",
+      "bytes": 317
+    },
+    "environment/system-info.json": {
+      "sha256": "deaa0be8f28eaa49673486e4d4f39e6261725f2473534f2465f5017d1d9b9c1d",
+      "bytes": 351
+    },
+    "results/A_data/audit.json": {
+      "sha256": "c18013b60b747e3e309630e286b0e6fe1e6d0699972c7f1f09b4bb453cdc73b4",
+      "bytes": 5232
+    },
+    "results/A_data/data_dictionary.csv": {
+      "sha256": "f2504cd58406d6de4be5967d36ec4755d7c447a197b0dd71f26b7ec4976164bb",
+      "bytes": 15866
+    },
+    "results/A_data/field_validation.json": {
+      "sha256": "cd2ea008cc8003beabdd4b94b5880b1f1d4dee6459c9a6753046893f32776e53",
+      "bytes": 848
+    },
+    "results/A_data/figures/01_train_class_distribution.png": {
+      "sha256": "b9cb7821117b60a7d3ac9f6f872e2800653f3576936cc2884cab3c2c1f2c5a08",
+      "bytes": 43339
+    },
+    "results/A_data/figures/02_train_enrollment_distributions.png": {
+      "sha256": "ad30ef0cc028f76dd6550bf4f2c1d187ad8c183ef4b063e1a387c4a08607f546",
+      "bytes": 94212
+    },
+    "results/A_data/figures/03_train_sem1_distributions.png": {
+      "sha256": "f44bf985afa1d2c068dadba679040d266bd03c4a479fe0ea1fcbbeabe181ad9e",
+      "bytes": 115747
+    },
+    "results/A_data/figures/04_train_sem1_grade_by_outcome.png": {
+      "sha256": "9e2510d11d6b40ad6aa0f8eab554d95704d6a1eadee7a80de1fb0f3d5bbcb428",
+      "bytes": 76736
+    },
+    "results/A_data/findings.md": {
+      "sha256": "fe69a37a499d2d9561481e2b43c67fcd437db01ca7eaede23394559caf8c0033",
+      "bytes": 1770
+    },
+    "results/A_data/plot_sources.json": {
+      "sha256": "421651ce5c938166d4df3c2331125ef9b52244118cb9a56f95c40549f6e5f907",
+      "bytes": 786
+    },
+    "results/A_data/split_summary.csv": {
+      "sha256": "179126d580c849cc6f4ab0f9c7ecf24d7056b0a94961ac10b12a187dc7421f82",
+      "bytes": 226
+    },
+    "results/A_data/train_class_summary.csv": {
+      "sha256": "557a977b95c1a31f60f058724c362cd51aa4d12893df64be5983a971c6e87ef3",
+      "bytes": 122
+    },
+    "results/A_data/train_numeric_summary.csv": {
+      "sha256": "1346e04402b8f806b50329ee8cb07c5baf95312ce0cad14df6ad65e970d59649",
+      "bytes": 1082
+    },
+    "results/A_data/train_sem1_by_outcome.csv": {
+      "sha256": "80ef9598f79dddd4ec407eefe4247c88ee02dd31f2814d21da8988940bf5e589",
+      "bytes": 371
+    },
+    "src/A_data/audit_raw.py": {
+      "sha256": "bcc5d027d888e0d21ddbf564bbfbecf3328b5642483c69fe6ba2d977825e2dd3",
+      "bytes": 3458
+    },
+    "src/A_data/define_features.py": {
+      "sha256": "86c7f6ef21e239cbafecf2ce5ca5f41b389a504ab0c799c976f76f776dd18e0b",
+      "bytes": 14572
+    },
+    "src/A_data/prepare_data.py": {
+      "sha256": "5f16bae5dff19ccd138706ed3c419483967a8bdb9b4618a5c661b1a613951f86",
+      "bytes": 21749
+    },
+    "src/A_data/verify_A.py": {
+      "sha256": "edbb7f3ffa044f57fe50ca591ee878ca3d468dc65fa7acf95f0d4bd7ccf4fcef",
+      "bytes": 12380
+    }
+  },
+  "not_hashed": {
+    "data/manifest.json": "No recursive self-hash",
+    "docs/handoffs/A.md": "Manual acceptance fields remain editable",
+    "PROGRESS.md": "Team progress remains editable",
+    "README.md": "Team overview remains editable",
+    "results/A_data/delivery_check.json": "Written after delivery verification",
+    "results/A_data/reproduction_check.json": "Written after independent reproduction"
+  }
+}

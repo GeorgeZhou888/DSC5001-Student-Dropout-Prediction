@@ -1,0 +1,168 @@
+{
+  "stage": "A_delivery",
+  "status": "PASS",
+  "recorded_at_hk": "2026-10-29T18:04:16+08:00",
+  "source": {
+    "url": "https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success",
+    "doi": "10.24432/C5MC89",
+    "license": "CC BY 4.0"
+  },
+  "raw_file": "data/raw/data.csv",
+  "raw_bytes": 533230,
+  "raw_sha256": "3ef126de5cefff26eb11fbb4237f1a1401cb64b488e2f1d598c23cedeb4c45ae",
+  "rows": 4424,
+  "columns_count": 37,
+  "label_counts": {
+    "Graduate": 2209,
+    "Dropout": 1421,
+    "Enrolled": 794
+  },
+  "missing_cells": 0,
+  "exact_duplicate_rows": 0,
+  "nonfinite_numeric_values": 0,
+  "columns": [
+    "Marital status",
+    "Application mode",
+    "Application order",
+    "Course",
+    "Daytime/evening attendance\t",
+    "Previous qualification",
+    "Previous qualification (grade)",
+    "Nacionality",
+    "Mother's qualification",
+    "Father's qualification",
+    "Mother's occupation",
+    "Father's occupation",
+    "Admission grade",
+    "Displaced",
+    "Educational special needs",
+    "Debtor",
+    "Tuition fees up to date",
+    "Gender",
+    "Scholarship holder",
+    "Age at enrollment",
+    "International",
+    "Curricular units 1st sem (credited)",
+    "Curricular units 1st sem (enrolled)",
+    "Curricular units 1st sem (evaluations)",
+    "Curricular units 1st sem (approved)",
+    "Curricular units 1st sem (grade)",
+    "Curricular units 1st sem (without evaluations)",
+    "Curricular units 2nd sem (credited)",
+    "Curricular units 2nd sem (enrolled)",
+    "Curricular units 2nd sem (evaluations)",
+    "Curricular units 2nd sem (approved)",
+    "Curricular units 2nd sem (grade)",
+    "Curricular units 2nd sem (without evaluations)",
+    "Unemployment rate",
+    "Inflation rate",
+    "GDP",
+    "Target"
+  ],
+  "storage_dtypes": {
+    "Marital status": "int64",
+    "Application mode": "int64",
+    "Application order": "int64",
+    "Course": "int64",
+    "Daytime/evening attendance\t": "int64",
+    "Previous qualification": "int64",
+    "Previous qualification (grade)": "float64",
+    "Nacionality": "int64",
+    "Mother's qualification": "int64",
+    "Father's qualification": "int64",
+    "Mother's occupation": "int64",
+    "Father's occupation": "int64",
+    "Admission grade": "float64",
+    "Displaced": "int64",
+    "Educational special needs": "int64",
+    "Debtor": "int64",
+    "Tuition fees up to date": "int64",
+    "Gender": "int64",
+    "Scholarship holder": "int64",
+    "Age at enrollment": "int64",
+    "International": "int64",
+    "Curricular units 1st sem (credited)": "int64",
+    "Curricular units 1st sem (enrolled)": "int64",
+    "Curricular units 1st sem (evaluations)": "int64",
+    "Curricular units 1st sem (approved)": "int64",
+    "Curricular units 1st sem (grade)": "float64",
+    "Curricular units 1st sem (without evaluations)": "int64",
+    "Curricular units 2nd sem (credited)": "int64",
+    "Curricular units 2nd sem (enrolled)": "int64",
+    "Curricular units 2nd sem (evaluations)": "int64",
+    "Curricular units 2nd sem (approved)": "int64",
+    "Curricular units 2nd sem (grade)": "float64",
+    "Curricular units 2nd sem (without evaluations)": "int64",
+    "Unemployment rate": "float64",
+    "Inflation rate": "float64",
+    "GDP": "float64",
+    "Target": "str"
+  },
+  "columns_with_outer_whitespace": {
+    "Daytime/evening attendance\t": "Daytime/evening attendance"
+  },
+  "checks": {
+    "expected_shape": true,
+    "unique_column_names": true,
+    "expected_labels": true,
+    "no_missing_cells": true,
+    "no_exact_duplicate_rows": true,
+    "numeric_predictor_count_36": true,
+    "no_nonfinite_numeric_values": true,
+    "matches_current_official_file": true
+  },
+  "pending_review": [
+    "Independent fresh-environment reproduction and B acceptance"
+  ],
+  "field_validation": {
+    "stage": "field_codes_ranges_and_feature_definition",
+    "status": "PASS",
+    "recorded_at_hk": "2026-10-29T18:04:16+08:00",
+    "raw_sha256": "3ef126de5cefff26eb11fbb4237f1a1401cb64b488e2f1d598c23cedeb4c45ae",
+    "metadata_sha256": "c48a8f6303ccf2a5ade930fe6e85c53df209c2933f39910344c56a53a8641d5e",
+    "invalid_values_by_column": {},
+    "encoded_unknown_or_blank_counts": {
+      "Mother's qualification": {
+        "34": 130
+      },
+      "Father's qualification": {
+        "34": 112
+      },
+      "Mother's occupation": {
+        "99": 17
+      },
+      "Father's occupation": {
+        "99": 19
+      }
+    },
+    "notes": [
+      "No empty cells does not mean all fields have known substantive values.",
+      "Source-based code/range checks do not rule out every possible data error.",
+      "Feature groups follow meanings and timing, not observed model performance."
+    ]
+  },
+  "rows_removed": 0,
+  "column_name_changes": {
+    "Daytime/evening attendance\t": "Daytime/evening attendance"
+  },
+  "processed_shape": [
+    4424,
+    38
+  ],
+  "raw_predictor_values_preserved": true,
+  "row_id_unique": true,
+  "split_counts": {
+    "train": 3539,
+    "test": 885,
+    "train_fold_0": 708,
+    "train_fold_1": 708,
+    "train_fold_2": 708,
+    "train_fold_3": 708,
+    "train_fold_4": 707
+  },
+  "feature_counts": {
+    "enrollment": 18,
+    "enrollment_plus_sem1": 24
+  },
+  "no_model_fitted": true
+}

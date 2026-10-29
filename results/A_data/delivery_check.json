@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "checked_at_hk": "2026-10-29T18:05:36+08:00",
+  "delivery_manifest_sha256": "8656d789879c6f537b63ba2c7154abeed35507a69143151753cc045158a5d7d5",
+  "checks": {
+    "manifest_hashes_match": true,
+    "locked_environment_matches": true,
+    "expected_shapes": true,
+    "stable_unique_ids": true,
+    "split_columns_exact": true,
+    "split_covers_all_ids_once": true,
+    "raw_values_preserved": true,
+    "train_test_sizes": true,
+    "train_test_disjoint": true,
+    "test_folds_empty": true,
+    "training_folds_valid": true,
+    "fold_sizes_balanced": true,
+    "three_labels_retained": true,
+    "stratified_outer_counts": true,
+    "stratified_inner_counts": true,
+    "feature_groups_valid": true,
+    "types_cover_features": true,
+    "second_semester_excluded": true,
+    "configs_ready": true,
+    "dictionary_covers_processed_table": true,
+    "plot_provenance_training_only": true,
+    "four_figures_exist": true,
+    "audits_pass": true
+  },
+  "hash_mismatches": [],
+  "environment_errors": [],
+  "counts": {
+    "raw": 4424,
+    "processed": 4424,
+    "train": 3539,
+    "test": 885
+  },
+  "fold_sizes": [
+    708,
+    708,
+    708,
+    708,
+    707
+  ],
+  "no_predictive_model_evaluated": true
+}
