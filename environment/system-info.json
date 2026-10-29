@@ -1,0 +1,11 @@
+{
+  "recorded_at_hk": "2026-10-29T17:04:56+08:00",
+  "operating_system": "Darwin",
+  "macos_version": "26.6.2",
+  "architecture": "arm64",
+  "python_version": "3.14.6",
+  "python_implementation": "CPython",
+  "pip_version": "26.2.2",
+  "branch_at_capture": "member-a-data",
+  "repository_head_at_capture": "986729eff3c818fff469aac46f9e523b3f6ca2a1"
+}

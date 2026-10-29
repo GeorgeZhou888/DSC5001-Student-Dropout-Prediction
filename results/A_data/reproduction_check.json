@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "started_at_hk": "2026-10-29T18:05:36+08:00",
+  "delivery_manifest_sha256": "8656d789879c6f537b63ba2c7154abeed35507a69143151753cc045158a5d7d5",
+  "fresh_virtual_environment": true,
+  "temporary_data_copy": true,
+  "python_version": "3.14.6",
+  "core_file_matches": {
+    "data/processed/students.csv": true,
+    "data/splits/split_manifest.csv": true,
+    "configs/feature_sets.json": true,
+    "configs/protocol.json": true,
+    "results/A_data/data_dictionary.csv": true,
+    "results/A_data/train_class_summary.csv": true,
+    "results/A_data/train_numeric_summary.csv": true,
+    "results/A_data/train_sem1_by_outcome.csv": true,
+    "results/A_data/split_summary.csv": true
+  },
+  "original_core_unchanged": true,
+  "note": "PNG files are existence/hash checked in each delivery; byte-identical rendering is not required. Plot-input tables are compared.",
+  "finished_at_hk": "2026-10-29T18:07:31+08:00"
+}

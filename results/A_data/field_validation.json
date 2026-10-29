@@ -1,0 +1,27 @@
+{
+  "stage": "field_codes_ranges_and_feature_definition",
+  "status": "PASS",
+  "recorded_at_hk": "2026-10-29T18:04:16+08:00",
+  "raw_sha256": "3ef126de5cefff26eb11fbb4237f1a1401cb64b488e2f1d598c23cedeb4c45ae",
+  "metadata_sha256": "c48a8f6303ccf2a5ade930fe6e85c53df209c2933f39910344c56a53a8641d5e",
+  "invalid_values_by_column": {},
+  "encoded_unknown_or_blank_counts": {
+    "Mother's qualification": {
+      "34": 130
+    },
+    "Father's qualification": {
+      "34": 112
+    },
+    "Mother's occupation": {
+      "99": 17
+    },
+    "Father's occupation": {
+      "99": 19
+    }
+  },
+  "notes": [
+    "No empty cells does not mean all fields have known substantive values.",
+    "Source-based code/range checks do not rule out every possible data error.",
+    "Feature groups follow meanings and timing, not observed model performance."
+  ]
+}
