@@ -1,0 +1,243 @@
+{
+  "status": "CONTENT_VERIFIED_ACCEPTANCE_PENDING",
+  "policy": "explicit LF-equivalence exception; upstream files are never changed",
+  "files": [
+    {
+      "file": "configs/feature_sets.json",
+      "expected_sha256": "6267ce371bf3e02dc95427913184c452c475721dcf7ec3289ace17bc24126a4e",
+      "actual_sha256": "3e43b447d1bebe5ce496eaf57ea0cdb44e9b2667a0f0d2fe5a8ff0a0665824ea",
+      "expected_bytes": 4489,
+      "actual_bytes": 4602,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "6267ce371bf3e02dc95427913184c452c475721dcf7ec3289ace17bc24126a4e"
+    },
+    {
+      "file": "configs/protocol.json",
+      "expected_sha256": "ae41689c85f2eddfae5ca876b781e293cfc07c5f5edf1a985d3191e74cc5c0ea",
+      "actual_sha256": "ee16b0dfe612ad75ebb89f20399d26a3e12f87a67bfe7c29b72ecb319a884838",
+      "expected_bytes": 1577,
+      "actual_bytes": 1629,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "ae41689c85f2eddfae5ca876b781e293cfc07c5f5edf1a985d3191e74cc5c0ea"
+    },
+    {
+      "file": "data/processed/students.csv",
+      "expected_sha256": "c8a87c649896f4567f7a45509d38631316d5dc8805860fb058d5386495509996",
+      "actual_sha256": "32eef7bcbd96ec23ecf8ef08eb88abc4d3af5bad89851b91f8468bb9d8de2dd5",
+      "expected_bytes": 564198,
+      "actual_bytes": 568623,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "c8a87c649896f4567f7a45509d38631316d5dc8805860fb058d5386495509996"
+    },
+    {
+      "file": "data/raw/data.csv",
+      "expected_sha256": "3ef126de5cefff26eb11fbb4237f1a1401cb64b488e2f1d598c23cedeb4c45ae",
+      "actual_sha256": "3ef126de5cefff26eb11fbb4237f1a1401cb64b488e2f1d598c23cedeb4c45ae",
+      "expected_bytes": 533230,
+      "actual_bytes": 533230,
+      "status": "exact",
+      "lf_canonical_sha256": null
+    },
+    {
+      "file": "data/raw/uci_metadata.json",
+      "expected_sha256": "c48a8f6303ccf2a5ade930fe6e85c53df209c2933f39910344c56a53a8641d5e",
+      "actual_sha256": "c48a8f6303ccf2a5ade930fe6e85c53df209c2933f39910344c56a53a8641d5e",
+      "expected_bytes": 19188,
+      "actual_bytes": 19188,
+      "status": "exact",
+      "lf_canonical_sha256": null
+    },
+    {
+      "file": "data/splits/split_manifest.csv",
+      "expected_sha256": "2c0094e4359d9d1310f0dd4e9bae69440f5c631f101bada67ec4dc028a3db629",
+      "actual_sha256": "b3bcd0c522fff8409bac802dd674355f12ec6295250b66cb8332ca28d9f4f2f8",
+      "expected_bytes": 69043,
+      "actual_bytes": 73468,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "2c0094e4359d9d1310f0dd4e9bae69440f5c631f101bada67ec4dc028a3db629"
+    },
+    {
+      "file": "environment/python-version.txt",
+      "expected_sha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+      "actual_sha256": "2b095b05c4093ebca54b87bd2c6a6f557935e6b3f8f506a0c2e5e294a763f4ad",
+      "expected_bytes": 14,
+      "actual_bytes": 15,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c"
+    },
+    {
+      "file": "environment/requirements-lock.txt",
+      "expected_sha256": "f309cd7b509c6bdcef7a6e638f727857b1c085e78d78a8d1023c1ea9466e7bf6",
+      "actual_sha256": "17eade602d00d7431c8981731aea44d5975a1f6228ed9567ac9ad68dfffb0d12",
+      "expected_bytes": 317,
+      "actual_bytes": 336,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "f309cd7b509c6bdcef7a6e638f727857b1c085e78d78a8d1023c1ea9466e7bf6"
+    },
+    {
+      "file": "environment/system-info.json",
+      "expected_sha256": "deaa0be8f28eaa49673486e4d4f39e6261725f2473534f2465f5017d1d9b9c1d",
+      "actual_sha256": "862ecc8a31fbb242ec012f93f9857b23c8196923269a18c45122eb2c160211ae",
+      "expected_bytes": 351,
+      "actual_bytes": 362,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "deaa0be8f28eaa49673486e4d4f39e6261725f2473534f2465f5017d1d9b9c1d"
+    },
+    {
+      "file": "results/A_data/audit.json",
+      "expected_sha256": "c18013b60b747e3e309630e286b0e6fe1e6d0699972c7f1f09b4bb453cdc73b4",
+      "actual_sha256": "770ad00090ddaa6addcb2647bcbaea686e3497fff414d69fa803b2c9d8021e02",
+      "expected_bytes": 5232,
+      "actual_bytes": 5400,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "c18013b60b747e3e309630e286b0e6fe1e6d0699972c7f1f09b4bb453cdc73b4"
+    },
+    {
+      "file": "results/A_data/data_dictionary.csv",
+      "expected_sha256": "f2504cd58406d6de4be5967d36ec4755d7c447a197b0dd71f26b7ec4976164bb",
+      "actual_sha256": "f2504cd58406d6de4be5967d36ec4755d7c447a197b0dd71f26b7ec4976164bb",
+      "expected_bytes": 15866,
+      "actual_bytes": 15866,
+      "status": "exact",
+      "lf_canonical_sha256": null
+    },
+    {
+      "file": "results/A_data/field_validation.json",
+      "expected_sha256": "cd2ea008cc8003beabdd4b94b5880b1f1d4dee6459c9a6753046893f32776e53",
+      "actual_sha256": "55696d42ded16783ba42c65e2fb4bd3c79fc04d808d7f0cf27efd72cf44ee597",
+      "expected_bytes": 848,
+      "actual_bytes": 875,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "cd2ea008cc8003beabdd4b94b5880b1f1d4dee6459c9a6753046893f32776e53"
+    },
+    {
+      "file": "results/A_data/figures/01_train_class_distribution.png",
+      "expected_sha256": "b9cb7821117b60a7d3ac9f6f872e2800653f3576936cc2884cab3c2c1f2c5a08",
+      "actual_sha256": "b9cb7821117b60a7d3ac9f6f872e2800653f3576936cc2884cab3c2c1f2c5a08",
+      "expected_bytes": 43339,
+      "actual_bytes": 43339,
+      "status": "exact",
+      "lf_canonical_sha256": null
+    },
+    {
+      "file": "results/A_data/figures/02_train_enrollment_distributions.png",
+      "expected_sha256": "ad30ef0cc028f76dd6550bf4f2c1d187ad8c183ef4b063e1a387c4a08607f546",
+      "actual_sha256": "ad30ef0cc028f76dd6550bf4f2c1d187ad8c183ef4b063e1a387c4a08607f546",
+      "expected_bytes": 94212,
+      "actual_bytes": 94212,
+      "status": "exact",
+      "lf_canonical_sha256": null
+    },
+    {
+      "file": "results/A_data/figures/03_train_sem1_distributions.png",
+      "expected_sha256": "f44bf985afa1d2c068dadba679040d266bd03c4a479fe0ea1fcbbeabe181ad9e",
+      "actual_sha256": "f44bf985afa1d2c068dadba679040d266bd03c4a479fe0ea1fcbbeabe181ad9e",
+      "expected_bytes": 115747,
+      "actual_bytes": 115747,
+      "status": "exact",
+      "lf_canonical_sha256": null
+    },
+    {
+      "file": "results/A_data/figures/04_train_sem1_grade_by_outcome.png",
+      "expected_sha256": "9e2510d11d6b40ad6aa0f8eab554d95704d6a1eadee7a80de1fb0f3d5bbcb428",
+      "actual_sha256": "9e2510d11d6b40ad6aa0f8eab554d95704d6a1eadee7a80de1fb0f3d5bbcb428",
+      "expected_bytes": 76736,
+      "actual_bytes": 76736,
+      "status": "exact",
+      "lf_canonical_sha256": null
+    },
+    {
+      "file": "results/A_data/findings.md",
+      "expected_sha256": "fe69a37a499d2d9561481e2b43c67fcd437db01ca7eaede23394559caf8c0033",
+      "actual_sha256": "3f05f73b33cf749696b4758f01e1abc0a8275f908b0384226b31b30720d3c9e5",
+      "expected_bytes": 1770,
+      "actual_bytes": 1797,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "fe69a37a499d2d9561481e2b43c67fcd437db01ca7eaede23394559caf8c0033"
+    },
+    {
+      "file": "results/A_data/plot_sources.json",
+      "expected_sha256": "421651ce5c938166d4df3c2331125ef9b52244118cb9a56f95c40549f6e5f907",
+      "actual_sha256": "58a5e4d28f7243c1921cb7bcc182d3021e05a452d9ae75cb08e4b62cd6649940",
+      "expected_bytes": 786,
+      "actual_bytes": 811,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "421651ce5c938166d4df3c2331125ef9b52244118cb9a56f95c40549f6e5f907"
+    },
+    {
+      "file": "results/A_data/split_summary.csv",
+      "expected_sha256": "179126d580c849cc6f4ab0f9c7ecf24d7056b0a94961ac10b12a187dc7421f82",
+      "actual_sha256": "1a0e46080132a18a9e942d85c8bfa4d714650e3ece83156a0fb7194adb1543d3",
+      "expected_bytes": 226,
+      "actual_bytes": 234,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "179126d580c849cc6f4ab0f9c7ecf24d7056b0a94961ac10b12a187dc7421f82"
+    },
+    {
+      "file": "results/A_data/train_class_summary.csv",
+      "expected_sha256": "557a977b95c1a31f60f058724c362cd51aa4d12893df64be5983a971c6e87ef3",
+      "actual_sha256": "69f735b7c7e49f2e8944e2b9e28859ac88ce96cf7feff4ad27355b98a12e5929",
+      "expected_bytes": 122,
+      "actual_bytes": 126,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "557a977b95c1a31f60f058724c362cd51aa4d12893df64be5983a971c6e87ef3"
+    },
+    {
+      "file": "results/A_data/train_numeric_summary.csv",
+      "expected_sha256": "1346e04402b8f806b50329ee8cb07c5baf95312ce0cad14df6ad65e970d59649",
+      "actual_sha256": "ec03056f1e7a60d53171db9dc74168e3d466d1c1281d6e8dc5699cf0c6bcce50",
+      "expected_bytes": 1082,
+      "actual_bytes": 1093,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "1346e04402b8f806b50329ee8cb07c5baf95312ce0cad14df6ad65e970d59649"
+    },
+    {
+      "file": "results/A_data/train_sem1_by_outcome.csv",
+      "expected_sha256": "80ef9598f79dddd4ec407eefe4247c88ee02dd31f2814d21da8988940bf5e589",
+      "actual_sha256": "c71835d2a3489c9cde0cdd0ca514f39a81f42913000fc42e6135abfe2d71937a",
+      "expected_bytes": 371,
+      "actual_bytes": 375,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "80ef9598f79dddd4ec407eefe4247c88ee02dd31f2814d21da8988940bf5e589"
+    },
+    {
+      "file": "src/A_data/audit_raw.py",
+      "expected_sha256": "bcc5d027d888e0d21ddbf564bbfbecf3328b5642483c69fe6ba2d977825e2dd3",
+      "actual_sha256": "c103e4f5a6a7513bae986ab3ddf76f491a63c8cd8ea8a01df5a7d2de2bad3896",
+      "expected_bytes": 3458,
+      "actual_bytes": 3548,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "bcc5d027d888e0d21ddbf564bbfbecf3328b5642483c69fe6ba2d977825e2dd3"
+    },
+    {
+      "file": "src/A_data/define_features.py",
+      "expected_sha256": "86c7f6ef21e239cbafecf2ce5ca5f41b389a504ab0c799c976f76f776dd18e0b",
+      "actual_sha256": "7755c880610797d113697e6d35e9a68ac413f688c5382b98e7aed004a8b534dc",
+      "expected_bytes": 14572,
+      "actual_bytes": 14863,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "86c7f6ef21e239cbafecf2ce5ca5f41b389a504ab0c799c976f76f776dd18e0b"
+    },
+    {
+      "file": "src/A_data/prepare_data.py",
+      "expected_sha256": "5f16bae5dff19ccd138706ed3c419483967a8bdb9b4618a5c661b1a613951f86",
+      "actual_sha256": "a5384443e4affce8aa3d8ff9a1cdc9da32ff3fa5cb2ccdfc6f32cbb9a0c11e7e",
+      "expected_bytes": 21749,
+      "actual_bytes": 22157,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "5f16bae5dff19ccd138706ed3c419483967a8bdb9b4618a5c661b1a613951f86"
+    },
+    {
+      "file": "src/A_data/verify_A.py",
+      "expected_sha256": "edbb7f3ffa044f57fe50ca591ee878ca3d468dc65fa7acf95f0d4bd7ccf4fcef",
+      "actual_sha256": "531e2d7bcfb860c1ec1569a83c312c0b2811e7008d4fef5b2607f44de4b390c4",
+      "expected_bytes": 12380,
+      "actual_bytes": 12611,
+      "status": "lf_equivalent_only",
+      "lf_canonical_sha256": "edbb7f3ffa044f57fe50ca591ee878ca3d468dc65fa7acf95f0d4bd7ccf4fcef"
+    }
+  ],
+  "exact_count": 7,
+  "lf_equivalent_count": 19,
+  "formal_A_acceptance": "Not asserted; A/leader must confirm the frozen input version."
+}

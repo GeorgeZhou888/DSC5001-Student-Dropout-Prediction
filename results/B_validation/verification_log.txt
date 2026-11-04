@@ -1,0 +1,8 @@
+Rechecking selected model: enrollment / logistic_regression
+Rechecking selected model: enrollment / decision_tree
+Rechecking selected model: enrollment / random_forest
+Rechecking selected model: enrollment_plus_sem1 / logistic_regression
+Rechecking selected model: enrollment_plus_sem1 / decision_tree
+Rechecking selected model: enrollment_plus_sem1 / random_forest
+Rechecking selected model: shared_majority / majority_baseline
+B verification: PASS (16/16)

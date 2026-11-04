@@ -1,0 +1,13 @@
+test_checksum_policy_distinguishes_line_endings_and_content (test_b_models.BProtocolTests.test_checksum_policy_distinguishes_line_endings_and_content) ... ok
+test_exact_supplied_fold_membership (test_b_models.BProtocolTests.test_exact_supplied_fold_membership) ... ok
+test_manifest_path_cannot_escape_root (test_b_models.BProtocolTests.test_manifest_path_cannot_escape_root) ... ok
+test_missing_class_metrics_are_explicit (test_b_models.BProtocolTests.test_missing_class_metrics_are_explicit) ... ok
+test_scaler_and_categories_learn_only_from_fit_fold (test_b_models.BProtocolTests.test_scaler_and_categories_learn_only_from_fit_fold) ... ok
+test_serialized_majority_pipeline_is_portable (test_b_models.BProtocolTests.test_serialized_majority_pipeline_is_portable) ... ok
+test_test_labels_and_predictors_are_never_used (test_b_models.BProtocolTests.test_test_labels_and_predictors_are_never_used) ... ok
+test_unknown_categories_and_probability_labels (test_b_models.BProtocolTests.test_unknown_categories_and_probability_labels) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.554s
+
+OK
