@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-11-04T17:46:20+08:00",
+  "training_run_manifest_sha256": "f8219789901f9e1faf606ff37338a73aa3035f65e08363abc5a9e12ba132dde1",
+  "checks": {
+    "actual_upstream_hashes_match_training_run": true,
+    "training_source_hashes_match": true,
+    "training_output_hashes_match": true,
+    "locked_environment_matches": true,
+    "fixed_training_ids_and_folds_match": true,
+    "six_groups_and_baseline_present": true,
+    "expected_validation_row_counts": true,
+    "selected_rows_match_candidate_results": true,
+    "scores_are_finite_and_in_range": true,
+    "models_under_20mb": true,
+    "summary_mean_and_std_match_folds": true,
+    "parameters_selected_by_cv_macro_f1": true,
+    "saved_models_labels_features_and_fit_scope": true,
+    "representative_selected_before_test": true,
+    "upstream_unchanged_after_verification": true,
+    "all_35_selected_fold_scores_independently_reproduced": true
+  },
+  "model_checks": [
+    {
+      "model": "logistic_regression",
+      "feature_set": "enrollment",
+      "pass": true
+    },
+    {
+      "model": "decision_tree",
+      "feature_set": "enrollment",
+      "pass": true
+    },
+    {
+      "model": "random_forest",
+      "feature_set": "enrollment",
+      "pass": true
+    },
+    {
+      "model": "logistic_regression",
+      "feature_set": "enrollment_plus_sem1",
+      "pass": true
+    },
+    {
+      "model": "decision_tree",
+      "feature_set": "enrollment_plus_sem1",
+      "pass": true
+    },
+    {
+      "model": "random_forest",
+      "feature_set": "enrollment_plus_sem1",
+      "pass": true
+    },
+    {
+      "model": "majority_baseline",
+      "feature_set": "shared_majority",
+      "pass": true
+    }
+  ],
+  "independent_cv_recheck": true,
+  "upstream_lf_equivalent_files": 19,
+  "test_set_evaluated": false,
+  "team_acceptance": "Not asserted; PR, C confirmation and leader acceptance remain manual."
+}

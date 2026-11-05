@@ -1,0 +1,14 @@
+Training enrollment / logistic_regression: 6 candidates x 5 folds
+  selected macro-F1=0.523516
+Training enrollment / decision_tree: 12 candidates x 5 folds
+  selected macro-F1=0.455222
+Training enrollment / random_forest: 8 candidates x 5 folds
+  selected macro-F1=0.518996
+Training enrollment_plus_sem1 / logistic_regression: 6 candidates x 5 folds
+  selected macro-F1=0.644385
+Training enrollment_plus_sem1 / decision_tree: 12 candidates x 5 folds
+  selected macro-F1=0.601586
+Training enrollment_plus_sem1 / random_forest: 8 candidates x 5 folds
+  selected macro-F1=0.644883
+Training shared majority baseline: 5 fixed folds
+B stage complete: seven saved pipelines; no test-set evaluation.

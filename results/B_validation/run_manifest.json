@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "stage": "B_training_and_freeze",
+  "status": "COMPLETE_PENDING_TEAM_ACCEPTANCE",
+  "started_at": "2026-11-04T17:43:23+08:00",
+  "timezone": "Asia/Shanghai",
+  "source_snapshot_commit": "c5d69b848d6f1fe696c4d82c632ede438db7fadd",
+  "source_zip_sha256": "5b7ff7250f0d8d8840c0099e1f2b6f1a44a0ece59da3db92b1884182322689c3",
+  "A_manifest_input_baseline_commit": "986729eff3c818fff469aac46f9e523b3f6ca2a1",
+  "A_manifest_repository_head_at_run": "986729eff3c818fff469aac46f9e523b3f6ca2a1",
+  "inputs_actual_sha256": {
+    "data/manifest.json": "f87ee5cc5ead3236bda1755ef74ac906183d52e981eec9407f71ce9c272ccdbd",
+    "data/processed/students.csv": "32eef7bcbd96ec23ecf8ef08eb88abc4d3af5bad89851b91f8468bb9d8de2dd5",
+    "data/splits/split_manifest.csv": "b3bcd0c522fff8409bac802dd674355f12ec6295250b66cb8332ca28d9f4f2f8",
+    "configs/feature_sets.json": "3e43b447d1bebe5ce496eaf57ea0cdb44e9b2667a0f0d2fe5a8ff0a0665824ea",
+    "configs/protocol.json": "ee16b0dfe612ad75ebb89f20399d26a3e12f87a67bfe7c29b72ecb319a884838",
+    "environment/python-version.txt": "2b095b05c4093ebca54b87bd2c6a6f557935e6b3f8f506a0c2e5e294a763f4ad",
+    "environment/requirements-lock.txt": "17eade602d00d7431c8981731aea44d5975a1f6228ed9567ac9ad68dfffb0d12"
+  },
+  "source_sha256": {
+    "src/B_models/test_b_models.py": "528f06274242e29a3d17459de3dd486337b528190eb76802475a5389ecd80bae",
+    "src/B_models/train_models.py": "7500e682a300ab21c1e79b85be530f042adf857d0eed1ed1c525a1353dad99f1"
+  },
+  "environment": {
+    "python_version": "3.14.5",
+    "a_recorded_python": "3.14.6",
+    "python_policy": "same major/minor; patch recorded explicitly",
+    "system": "Windows",
+    "architecture": "AMD64",
+    "packages": {
+      "cloudpickle": "3.1.2",
+      "contourpy": "1.4.0",
+      "cycler": "0.12.1",
+      "fonttools": "4.68.0",
+      "joblib": "1.6.0",
+      "kiwisolver": "1.5.1",
+      "matplotlib": "3.11.2",
+      "narwhals": "2.28.0",
+      "numpy": "2.5.4",
+      "packaging": "26.3",
+      "pandas": "3.1.0",
+      "pillow": "13.0.0",
+      "pyparsing": "3.3.3",
+      "python-dateutil": "3.0.0",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1",
+      "six": "1.17.0",
+      "threadpoolctl": "3.7.0",
+      "tzdata": "2026.6"
+    },
+    "exact_package_lock_match": true
+  },
+  "random_seed": 42,
+  "command": "python src/B_models/train_models.py --allow-lf-equivalent --source-commit c5d69b848d6f1fe696c4d82c632ede438db7fadd --source-zip-sha256 5b7ff7250f0d8d8840c0099e1f2b6f1a44a0ece59da3db92b1884182322689c3 --jobs 2",
+  "n_training_rows": 3539,
+  "n_test_rows_reserved": 885,
+  "test_policy": "Test rows discarded before model DataFrame creation; no test predictions or metrics.",
+  "folds": "Read cv_fold from A manifest; never regenerate folds",
+  "grid": {
+    "logistic_regression": {
+      "classifier__C": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "classifier__class_weight": [
+        null,
+        "balanced"
+      ]
+    },
+    "decision_tree": {
+      "classifier__max_depth": [
+        3,
+        6,
+        null
+      ],
+      "classifier__min_samples_leaf": [
+        5,
+        20
+      ],
+      "classifier__class_weight": [
+        null,
+        "balanced"
+      ]
+    },
+    "random_forest": {
+      "classifier__max_depth": [
+        12,
+        null
+      ],
+      "classifier__min_samples_leaf": [
+        1,
+        5
+      ],
+      "classifier__class_weight": [
+        null,
+        "balanced"
+      ]
+    }
+  },
+  "selection_metric": "mean five-fold macro_f1",
+  "tie_break": "First candidate in deterministic sklearn ParameterGrid order on exact score ties",
+  "metric_labels": [
+    "Dropout",
+    "Enrolled",
+    "Graduate"
+  ],
+  "zero_division": 0,
+  "representative_model_policy": "Highest mean CV macro_f1 among six groups; exact ties use FEATURE_SETS then MODEL_NAMES order.",
+  "limits": [
+    "CV is used for tuning; selected CV scores are not an unbiased final generalization estimate.",
+    "A formal acceptance and B/C/leader sign-off are not asserted by this script.",
+    "First-semester comparison is retrospective, not a validated real-time warning system."
+  ],
+  "finished_at": "2026-11-04T17:44:27+08:00",
+  "duration_seconds": 64.143,
+  "training_ids_sha256": "484976319cc5db5ec262bd7c8bb564a7b709f210daac956be2327c5cd4489fe2",
+  "n_cv_rows_selected": 35,
+  "n_cv_rows_all_candidates": 265,
+  "n_candidate_configurations": 52,
+  "n_saved_models": 7,
+  "all_upstream_files_unchanged": true,
+  "representative_model_for_C": {
+    "feature_set": "enrollment_plus_sem1",
+    "model": "random_forest",
+    "model_file": "models/enrollment_plus_sem1__random_forest.joblib",
+    "mean_validation_score": 0.6448828748866242
+  },
+  "acceptance_note": "B execution complete; explicit LF-equivalence exception and A/B/C/leader acceptance remain documented.",
+  "output_sha256": {
+    "models/enrollment__decision_tree.joblib": "b7c4d69acb0e7be1ead38528b5dd7de626beb9ef6b767b3bcaaed6bb0c77b27e",
+    "models/enrollment__logistic_regression.joblib": "8b27d810f545e6725c070055841db6938c42fd4119825de5813a393bf7250041",
+    "models/enrollment__random_forest.joblib": "47737963d1ecdf1f57b2bb374e647d164e3631fbd884845f399770744deffae7",
+    "models/enrollment_plus_sem1__decision_tree.joblib": "e4ada168fa4a4c82c1c4e325bca6f9955124889698761e583c9113cd8696172d",
+    "models/enrollment_plus_sem1__logistic_regression.joblib": "4b9b322a0019bd392d7186ec690f4e2582a9b0f86a762499b47155bc759a3217",
+    "models/enrollment_plus_sem1__random_forest.joblib": "5082a327f71e6bf1e5832176ab88fce127697206847eb6aceaa6c3e297bf25d9",
+    "models/majority_baseline.joblib": "7b4d2b3cf965ac7c228f8a7b8ad3b7e6ef2244f21aa4ea8bfe7eccbab6fe676e",
+    "results/B_validation/cv_all_candidates.csv": "bd41827dc458cf7e2fe18505b894b5a3e890dc898e580863ac98fb7006b81345",
+    "results/B_validation/cv_metrics.csv": "b3e32cf13bda5a509338afd85ef02291c4d6b676d4d9d0967bf0b3888522d786",
+    "results/B_validation/cv_search_results.csv": "842838651e2173b8b0d4ad619d96dde1a733fa37a2fa31028c76de8ccf5b2398",
+    "results/B_validation/cv_summary.csv": "f296b4e4ff2561ab5ef93353ea0ca6bf0eb7cf34a2aafa718970746101c2bd49",
+    "results/B_validation/environment.json": "41f3bb1b9671342f0e8ef79de98a05448c445e18a20976951ed9c4502e373a2b",
+    "results/B_validation/input_verification.json": "c49d2dca60f5c51a4ec8a5803195c4ef4f20ad9319725bca358181b26e3f6ae5",
+    "results/B_validation/model_catalog.json": "b40f163a0c923216ea68a0b05dc4ea4242432c05e2ca5c5105551defbaed5493",
+    "results/B_validation/requirements-lock.txt": "f309cd7b509c6bdcef7a6e638f727857b1c085e78d78a8d1023c1ea9466e7bf6",
+    "results/B_validation/selected_params.json": "c85a04d834701c1433764b97004c12452a08b4fca61987d7bbf15e0397b8253c",
+    "results/B_validation/training_fold_membership.csv": "cfad966255f161469b4f606b59c13bfc9e19930d92b34c8b338ea6b4d048dec3"
+  }
+}
