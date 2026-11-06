@@ -117,7 +117,7 @@ python src/C_evaluation/evaluate_models.py           # 完整评估，已有结�
 
 ## 人工验收记录
 
-- 本阶段PR链接及C提交编号：待真实提交后填写。
+- 本阶段PR链接及C提交编号：- 本阶段PR链接及C提交编号：https://github.com/GeorgeZhou888/DSC5001-Student-Dropout-Prediction/pull/NN（C 提交 2b6bd0e）。
 - B确认冻结模型未被改动及日期：待填写。
 - 组长对输入快照及字节状态（exact／lf_equivalent）的确认：待填写。
 - 组长验收结论：待填写。
