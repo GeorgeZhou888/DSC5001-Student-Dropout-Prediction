@@ -1,0 +1,81 @@
+{
+  "stage": "C_final_evaluation",
+  "verified_at": "2026-11-06T23:33:50+08:00",
+  "timezone": "Asia/Hong_Kong",
+  "checks_passed": 14,
+  "checks_total": 14,
+  "tolerance": 1e-12,
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "input_byte_status_is_documented",
+      "passed": true,
+      "detail": "{\"data/manifest.json\": \"exact\", \"data/processed/students.csv\": \"exact\", \"data/splits/split_manifest.csv\": \"exact\", \"configs/feature_sets.json\": \"exact\", \"configs/protocol.json\": \"exact\", \"environment/python-version.txt\": \"exact\", \"environment/requirements-lock.txt\": \"exact\"}"
+    },
+    {
+      "check": "frozen_b_commit_recorded",
+      "passed": true,
+      "detail": "c5d69b848d6f1fe696c4d82c632ede438db7fadd"
+    },
+    {
+      "check": "model_files_unchanged",
+      "passed": true,
+      "detail": "7 files"
+    },
+    {
+      "check": "prediction_rows",
+      "passed": true,
+      "detail": "6195"
+    },
+    {
+      "check": "prediction_students",
+      "passed": true,
+      "detail": "885 ids"
+    },
+    {
+      "check": "prediction_model_rows",
+      "passed": true,
+      "detail": "6195"
+    },
+    {
+      "check": "probabilities_sum_to_one",
+      "passed": true,
+      "detail": "max |sum-1| = 8.88e-16"
+    },
+    {
+      "check": "predicted_label_is_argmax",
+      "passed": true,
+      "detail": "0 mismatches"
+    },
+    {
+      "check": "true_labels_match_a_table",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "recomputed_metrics_match",
+      "passed": true,
+      "detail": "{\"macro_f1\": \"0.00e+00\", \"dropout_precision\": \"0.00e+00\", \"dropout_recall\": \"0.00e+00\"}"
+    },
+    {
+      "check": "baseline_predicts_majority",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "baseline_accuracy_equals_graduate_share",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "five_figures_present",
+      "passed": true,
+      "detail": "01_test_macro_f1_by_model.png, 02_feature_set_gain.png, 03_confusion_matrices.png, 04_interpretation_random_forest.png, 05_interpretation_logistic_regression.png"
+    },
+    {
+      "check": "output_hashes_match_manifest",
+      "passed": true,
+      "detail": "9 files"
+    }
+  ]
+}

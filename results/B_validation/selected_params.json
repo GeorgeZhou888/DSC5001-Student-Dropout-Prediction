@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "selection_metric": "macro_f1",
+  "tuning_scope": "training-only, fixed five-fold CV",
+  "groups": [
+    {
+      "feature_set": "enrollment",
+      "model": "logistic_regression",
+      "selected_candidate_id": 1,
+      "params": {
+        "classifier__C": 0.1,
+        "classifier__class_weight": "balanced"
+      },
+      "selection_metric": "macro_f1",
+      "mean_validation_score": 0.5235156232064762,
+      "std_validation_score": 0.010023146172032399,
+      "candidate_count": 6,
+      "fold_count": 5,
+      "model_file": "models/enrollment__logistic_regression.joblib"
+    },
+    {
+      "feature_set": "enrollment",
+      "model": "decision_tree",
+      "selected_candidate_id": 11,
+      "params": {
+        "classifier__class_weight": "balanced",
+        "classifier__max_depth": null,
+        "classifier__min_samples_leaf": 20
+      },
+      "selection_metric": "macro_f1",
+      "mean_validation_score": 0.455221977358395,
+      "std_validation_score": 0.034207069107699724,
+      "candidate_count": 12,
+      "fold_count": 5,
+      "model_file": "models/enrollment__decision_tree.joblib"
+    },
+    {
+      "feature_set": "enrollment",
+      "model": "random_forest",
+      "selected_candidate_id": 4,
+      "params": {
+        "classifier__class_weight": "balanced",
+        "classifier__max_depth": 12,
+        "classifier__min_samples_leaf": 1
+      },
+      "selection_metric": "macro_f1",
+      "mean_validation_score": 0.5189962829283882,
+      "std_validation_score": 0.008462755009598867,
+      "candidate_count": 8,
+      "fold_count": 5,
+      "model_file": "models/enrollment__random_forest.joblib"
+    },
+    {
+      "feature_set": "enrollment_plus_sem1",
+      "model": "logistic_regression",
+      "selected_candidate_id": 3,
+      "params": {
+        "classifier__C": 1.0,
+        "classifier__class_weight": "balanced"
+      },
+      "selection_metric": "macro_f1",
+      "mean_validation_score": 0.6443846043914115,
+      "std_validation_score": 0.015901819583871466,
+      "candidate_count": 6,
+      "fold_count": 5,
+      "model_file": "models/enrollment_plus_sem1__logistic_regression.joblib"
+    },
+    {
+      "feature_set": "enrollment_plus_sem1",
+      "model": "decision_tree",
+      "selected_candidate_id": 3,
+      "params": {
+        "classifier__class_weight": null,
+        "classifier__max_depth": 6,
+        "classifier__min_samples_leaf": 20
+      },
+      "selection_metric": "macro_f1",
+      "mean_validation_score": 0.6015864006576651,
+      "std_validation_score": 0.014089042368725642,
+      "candidate_count": 12,
+      "fold_count": 5,
+      "model_file": "models/enrollment_plus_sem1__decision_tree.joblib"
+    },
+    {
+      "feature_set": "enrollment_plus_sem1",
+      "model": "random_forest",
+      "selected_candidate_id": 6,
+      "params": {
+        "classifier__class_weight": "balanced",
+        "classifier__max_depth": null,
+        "classifier__min_samples_leaf": 1
+      },
+      "selection_metric": "macro_f1",
+      "mean_validation_score": 0.6448828748866242,
+      "std_validation_score": 0.017185084306045692,
+      "candidate_count": 8,
+      "fold_count": 5,
+      "model_file": "models/enrollment_plus_sem1__random_forest.joblib"
+    }
+  ],
+  "baseline": {
+    "strategy": "most_frequent",
+    "model_file": "models/majority_baseline.joblib",
+    "input_feature_set": "enrollment",
+    "mean_validation_score": 0.22201273668881658
+  },
+  "representative_model_for_C": {
+    "feature_set": "enrollment_plus_sem1",
+    "model": "random_forest",
+    "model_file": "models/enrollment_plus_sem1__random_forest.joblib",
+    "mean_validation_score": 0.6448828748866242
+  }
+}

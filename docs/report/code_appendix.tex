@@ -1,0 +1,214 @@
+\section{Team contributions}
+\label{app:contributions}
+
+This appendix documents the division of work and individual contributions to meet the course
+requirement for a clear, concise, and accurate contribution list.
+
+\subsection{Member A: Data preparation and experimental protocol}
+
+\textbf{Responsibilities:}
+\begin{itemize}[leftmargin=*]
+  \item Downloaded and preprocessed the UCI raw dataset
+  \item Designed the fixed experimental protocol (random seed, stratification strategy, leakage controls)
+  \item Defined two feature sets (18-variable enrollment, 24-variable enrollment plus first semester) with documented exclusion criteria
+  \item Generated split manifest and feature configuration files
+\end{itemize}
+
+\textbf{Deliverables:}
+\begin{itemize}[leftmargin=*]
+  \item \path{data/processed/students.csv} (4,424 rows; checksums recorded in \path{data/manifest.json})
+  \item \path{data/splits/split_manifest.csv} (row\_id, dataset\_split, cv\_fold assignments)
+  \item \path{configs/protocol.json} (seed, split ratio, CV fold count)
+  \item \path{configs/feature_sets.json} (18-variable and 24-variable feature definitions)
+  \item \path{docs/handoffs/A.md} (baseline delivery report and handoff documentation)
+  \item \path{src/A_data/prepare_data.py}, \path{src/A_data/verify_A.py}
+\end{itemize}
+
+\textbf{Verification:} 23/23 delivery checks passed in A's verification report.
+
+\subsection{Member B: Model training and hyperparameter tuning}
+
+\textbf{Responsibilities:}
+\begin{itemize}[leftmargin=*]
+  \item Implemented training pipelines for three model families (logistic regression, decision tree, random forest)
+  \item Conducted grid search hyperparameter tuning via five-fold cross-validation on the training set
+  \item Selected and froze six models plus one majority-class baseline before any test access
+  \item Pre-specified the 24-variable random forest as the representative model for interpretation
+\end{itemize}
+
+\textbf{Deliverables:}
+\begin{itemize}[leftmargin=*]
+  \item \path{src/B_models/train_models.py} (training script with grid search)
+  \item \path{src/B_models/verify_B.py} (verification script)
+  \item \path{src/B_models/test_b_models.py} (unit tests)
+  \item \path{models/*.joblib} (six frozen model pipelines plus baseline)
+  \item \path{results/B_validation/cv_metrics.csv} (validation scores by fold)
+  \item \path{results/B_validation/selected_params.json} (selected hyperparameters)
+  \item \path{results/B_validation/model_catalog.json} (model metadata and feature mappings)
+  \item \path{docs/handoffs/B.md} (model training report and handoff documentation)
+\end{itemize}
+
+\textbf{Verification:} 16/16 delivery checks passed; 35 validation folds independently recomputed with absolute agreement (tolerance $10^{-12}$).
+
+\subsection{Member C: Final evaluation and interpretation}
+
+\textbf{Responsibilities:}
+\begin{itemize}[leftmargin=*]
+  \item Applied the six frozen models to the held-out test set in a one-time evaluation
+  \item Computed test metrics (macro-F1, precision, recall, accuracy, log-loss)
+  \item Generated five interpretation figures (performance comparison, feature gain, confusion matrices, permutation importance, logistic coefficients)
+  \item Computed permutation importance for the pre-specified representative random forest
+\end{itemize}
+
+\textbf{Deliverables:}
+\begin{itemize}[leftmargin=*]
+  \item \path{src/C_evaluation/evaluate_models.py} (evaluation script)
+  \item \path{src/C_evaluation/verify_C.py} (verification script)
+  \item \path{results/C_final/test_metrics.csv} (seven model-level summary rows, each evaluated on 885 test students)
+  \item \path{results/C_final/test_predictions.csv} (6,195 rows: 885 students $\times$ seven models, with predictions and probabilities)
+  \item \path{results/C_final/figures/*.png} (five visualization figures)
+  \item \path{results/C_final/permutation_importance_representative.csv}
+  \item \path{results/C_final/logistic_dropout_coefficients.csv}
+  \item \path{results/C_final/findings.md} (result summary and main findings)
+  \item \path{docs/handoffs/C.md} (evaluation report and handoff documentation)
+\end{itemize}
+
+\textbf{Verification:} 14/14 delivery checks passed; test predictions table contains 6,195 rows (885 students $\times$ 7 models); metrics can be recomputed from prediction table with maximum error $8.88 \times 10^{-16}$.
+
+\subsection{Member D: Report integration and documentation}
+
+\textbf{Responsibilities:}
+\begin{itemize}[leftmargin=*]
+  \item Integrated materials from Members A, B, and C into a coherent report
+  \item Wrote main report, proposal, and code appendix
+  \item Cross-checked all numbers against C's output files
+  \item Prepared references and reproducibility documentation
+  \item Ensured compliance with experimental constraints and reporting standards
+\end{itemize}
+
+\textbf{Deliverables:}
+\begin{itemize}[leftmargin=*]
+  \item \path{docs/report/report.pdf} (this document)
+  \item \path{docs/proposal/proposal.pdf}
+  \item \path{docs/report/code_appendix.tex} (contribution and reproducibility appendix source)
+  \item \path{docs/report/references.bib}
+\end{itemize}
+
+\subsection{Member E: Presentation and dissemination}
+
+\textbf{Responsibilities:}
+\begin{itemize}[leftmargin=*]
+  \item Cross-checked the report's numerical results against Member C's evaluation outputs, including the dropout counts, precision, and recall.
+  \item Prepared the presentation slides and incorporated the report's key figures.
+  \item Wrote the bilingual English--Chinese presentation script for all five team members.
+  \item Coordinated and completed the group's recorded presentation.
+  \item Designed and prepared the A0 project poster.
+\end{itemize}
+
+\textbf{Deliverables:}
+\begin{itemize}[leftmargin=*]
+  \item \path{recording/Student-Dropout-Prediction.mp4}
+  \item \path{slides/Team-Zero bias hero-PPT.pptx}
+  \item \path{slides/Team-Zero bias hero-Poster.pptx}
+  \item \path{slides/Team-Zero bias hero-Script.docx}
+\end{itemize}
+
+\section{Reproducibility and code appendix}
+\label{app:code}
+
+\subsection{Repository layout}
+
+\textbf{Source code repository:}
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{GitHub:} \url{https://github.com/GeorgeZhou888/DSC5001-Student-Dropout-Prediction}
+  \item \textbf{Branch:} \texttt{main}
+  \item \textbf{Access:} Public repository
+  \item \textbf{Data license:} The UCI source dataset is licensed under CC BY 4.0. No separate project-code license is specified in the supplied repository.
+\end{itemize}
+
+The analysis uses the following project files:
+\begin{itemize}[leftmargin=*]
+  \item Data: \path{src/A_data/prepare_data.py}, \path{src/A_data/verify_A.py}.
+  \item Protocol: \path{configs/protocol.json}, \path{configs/feature_sets.json}.
+  \item B models and checks:\\
+  \path{src/B_models/train_models.py}\\
+  \path{src/B_models/verify_B.py}\\
+  \path{src/B_models/test_b_models.py}.
+  \item C evaluation and checks:\\
+  \path{src/C_evaluation/evaluate_models.py}\\
+  \path{src/C_evaluation/verify_C.py}.
+  \item Outputs:\\
+  \path{results/C_final/test_metrics.csv}\\
+  \path{results/C_final/test_predictions.csv}\\
+  figures and interpretation CSV files.
+\end{itemize}
+
+\subsection{Environment}
+
+The A/B/C records use Python 3.14.x. Dependencies are pinned in:\\
+\path{environment/requirements-lock.txt}.
+The runs used different platforms and patch releases: A used Python 3.14.6 on macOS ARM64, B used
+Python 3.14.5 on Windows AMD64, and C used Python 3.14.3 on Windows AMD64. The manifests retain
+these differences; the runs are not described as an identical runtime.
+
+\subsection{Commands}
+
+Run commands from the repository root. Commands for B and C are recorded in PowerShell syntax in
+their handoffs; the following commands are platform-neutral apart from the Python executable
+name:
+
+\begin{lstlisting}[language=bash,caption={Data preparation and verification}]
+python src/A_data/prepare_data.py
+python src/A_data/verify_A.py
+python src/A_data/verify_A.py --reproduce
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash,caption={Model checks and final evaluation}]
+python -m unittest discover -s src/B_models -p test_b_models.py -v
+python src/B_models/verify_B.py --recheck-cv
+python src/C_evaluation/evaluate_models.py --check
+python src/C_evaluation/verify_C.py
+\end{lstlisting}
+
+The complete final test evaluation was run once using the already frozen B models:
+
+\begin{lstlisting}[language=bash,caption={One-shot test evaluation; results already exist in this project}]
+python src/C_evaluation/evaluate_models.py
+\end{lstlisting}
+
+The evaluation script refuses to overwrite an existing output directory unless an explicit
+override is supplied. Do not use an overwrite option to regenerate the final test results for
+routine report edits.
+
+\subsection{Protocol summary}
+
+\begin{table}[H]
+\centering
+\caption{Fixed analysis protocol.}
+\begin{tabular}{ll}
+\toprule
+Item & Setting \\
+\midrule
+Raw records & 4,424 \\
+Train/test counts & 3,539 / 885 \\
+Outer split & Stratified 80/20, seed 42 \\
+Training validation & Five-fold stratified cross-validation \\
+Feature sets & 18 enrolment variables; 24 enrolment plus semester-1 variables \\
+Models & Logistic regression, decision tree, random forest \\
+Baseline & Majority class \\
+Selection metric & Macro-F1 \\
+Test-set use & One final evaluation after model freezing \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Provenance notes}
+
+The final evaluation manifest records the frozen B reference, input hashes and accepted line-ending
+states, model hashes, output hashes, environment, and command. The C verification report records
+14 of 14 checks passing; the stored prediction table has 6,195 rows, corresponding to 885 test
+students evaluated by seven pipelines including the shared baseline. The metric table can be
+recomputed from those predictions. These checks verify internal consistency of the recorded
+outputs; they do not replace a future independent run when the team prepares the final course
+submission.

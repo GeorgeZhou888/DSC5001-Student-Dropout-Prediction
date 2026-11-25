@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "stage": "C_final_evaluation",
+  "status": "COMPLETE_PENDING_TEAM_ACCEPTANCE",
+  "generated_at": "2026-11-06T23:31:45+08:00",
+  "timezone": "Asia/Hong_Kong",
+  "b_frozen_reference": {
+    "source_snapshot_commit": "c5d69b848d6f1fe696c4d82c632ede438db7fadd",
+    "source_zip_sha256": "5b7ff7250f0d8d8840c0099e1f2b6f1a44a0ece59da3db92b1884182322689c3",
+    "run_manifest_sha256": "f8219789901f9e1faf606ff37338a73aa3035f65e08363abc5a9e12ba132dde1",
+    "model_catalog_sha256": "b40f163a0c923216ea68a0b05dc4ea4242432c05e2ca5c5105551defbaed5493",
+    "representative_model_for_interpretation": {
+      "feature_set": "enrollment_plus_sem1",
+      "model": "random_forest",
+      "model_file": "models/enrollment_plus_sem1__random_forest.joblib",
+      "mean_validation_score": 0.6448828748866242
+    },
+    "selection_rule": "B fixed the representative model before C saw any test score; no parameter, feature or model was re-selected from test results."
+  },
+  "inputs": {
+    "data/manifest.json": {
+      "actual_sha256": "f87ee5cc5ead3236bda1755ef74ac906183d52e981eec9407f71ce9c272ccdbd",
+      "b_recorded_sha256": "f87ee5cc5ead3236bda1755ef74ac906183d52e981eec9407f71ce9c272ccdbd",
+      "lf_canonical_sha256": "8656d789879c6f537b63ba2c7154abeed35507a69143151753cc045158a5d7d5",
+      "byte_status": "exact",
+      "self_consistency": {
+        "listed_files": 26,
+        "failures": []
+      },
+      "a_canonical_lf_sha256": null,
+      "a_canonical_match": null
+    },
+    "data/processed/students.csv": {
+      "actual_sha256": "32eef7bcbd96ec23ecf8ef08eb88abc4d3af5bad89851b91f8468bb9d8de2dd5",
+      "b_recorded_sha256": "32eef7bcbd96ec23ecf8ef08eb88abc4d3af5bad89851b91f8468bb9d8de2dd5",
+      "lf_canonical_sha256": "c8a87c649896f4567f7a45509d38631316d5dc8805860fb058d5386495509996",
+      "byte_status": "exact",
+      "a_canonical_lf_sha256": "c8a87c649896f4567f7a45509d38631316d5dc8805860fb058d5386495509996",
+      "a_canonical_match": true
+    },
+    "data/splits/split_manifest.csv": {
+      "actual_sha256": "b3bcd0c522fff8409bac802dd674355f12ec6295250b66cb8332ca28d9f4f2f8",
+      "b_recorded_sha256": "b3bcd0c522fff8409bac802dd674355f12ec6295250b66cb8332ca28d9f4f2f8",
+      "lf_canonical_sha256": "2c0094e4359d9d1310f0dd4e9bae69440f5c631f101bada67ec4dc028a3db629",
+      "byte_status": "exact",
+      "a_canonical_lf_sha256": "2c0094e4359d9d1310f0dd4e9bae69440f5c631f101bada67ec4dc028a3db629",
+      "a_canonical_match": true
+    },
+    "configs/feature_sets.json": {
+      "actual_sha256": "3e43b447d1bebe5ce496eaf57ea0cdb44e9b2667a0f0d2fe5a8ff0a0665824ea",
+      "b_recorded_sha256": "3e43b447d1bebe5ce496eaf57ea0cdb44e9b2667a0f0d2fe5a8ff0a0665824ea",
+      "lf_canonical_sha256": "6267ce371bf3e02dc95427913184c452c475721dcf7ec3289ace17bc24126a4e",
+      "byte_status": "exact",
+      "a_canonical_lf_sha256": "6267ce371bf3e02dc95427913184c452c475721dcf7ec3289ace17bc24126a4e",
+      "a_canonical_match": true
+    },
+    "configs/protocol.json": {
+      "actual_sha256": "ee16b0dfe612ad75ebb89f20399d26a3e12f87a67bfe7c29b72ecb319a884838",
+      "b_recorded_sha256": "ee16b0dfe612ad75ebb89f20399d26a3e12f87a67bfe7c29b72ecb319a884838",
+      "lf_canonical_sha256": "ae41689c85f2eddfae5ca876b781e293cfc07c5f5edf1a985d3191e74cc5c0ea",
+      "byte_status": "exact",
+      "a_canonical_lf_sha256": "ae41689c85f2eddfae5ca876b781e293cfc07c5f5edf1a985d3191e74cc5c0ea",
+      "a_canonical_match": true
+    },
+    "environment/python-version.txt": {
+      "actual_sha256": "2b095b05c4093ebca54b87bd2c6a6f557935e6b3f8f506a0c2e5e294a763f4ad",
+      "b_recorded_sha256": "2b095b05c4093ebca54b87bd2c6a6f557935e6b3f8f506a0c2e5e294a763f4ad",
+      "lf_canonical_sha256": "917601090ffb73a030e3eaa8b7a01c41400cad4b61366b4218d7756a5733b66c",
+      "byte_status": "exact",
+      "a_canonical_lf_sha256": null,
+      "a_canonical_match": null
+    },
+    "environment/requirements-lock.txt": {
+      "actual_sha256": "17eade602d00d7431c8981731aea44d5975a1f6228ed9567ac9ad68dfffb0d12",
+      "b_recorded_sha256": "17eade602d00d7431c8981731aea44d5975a1f6228ed9567ac9ad68dfffb0d12",
+      "lf_canonical_sha256": "f309cd7b509c6bdcef7a6e638f727857b1c085e78d78a8d1023c1ea9466e7bf6",
+      "byte_status": "exact",
+      "a_canonical_lf_sha256": null,
+      "a_canonical_match": null
+    }
+  },
+  "input_integrity_policy": {
+    "rule": "actual bytes must equal B's recorded bytes, or a CRLF/LF-only variant whose LF-canonical SHA-256 equals the dual digest B recorded and A certified",
+    "line_ending_only_differences_accepted": true,
+    "any_other_difference_fails_the_run": true
+  },
+  "models": {
+    "models/enrollment__logistic_regression.joblib": {
+      "sha256": "8b27d810f545e6725c070055841db6938c42fd4119825de5813a393bf7250041",
+      "bytes": 7654,
+      "model": "logistic_regression",
+      "feature_set": "enrollment",
+      "n_features": 18
+    },
+    "models/enrollment__decision_tree.joblib": {
+      "sha256": "b7c4d69acb0e7be1ead38528b5dd7de626beb9ef6b767b3bcaaed6bb0c77b27e",
+      "bytes": 15129,
+      "model": "decision_tree",
+      "feature_set": "enrollment",
+      "n_features": 18
+    },
+    "models/enrollment__random_forest.joblib": {
+      "sha256": "47737963d1ecdf1f57b2bb374e647d164e3631fbd884845f399770744deffae7",
+      "bytes": 2245891,
+      "model": "random_forest",
+      "feature_set": "enrollment",
+      "n_features": 18
+    },
+    "models/enrollment_plus_sem1__logistic_regression.joblib": {
+      "sha256": "4b9b322a0019bd392d7186ec690f4e2582a9b0f86a762499b47155bc759a3217",
+      "bytes": 8053,
+      "model": "logistic_regression",
+      "feature_set": "enrollment_plus_sem1",
+      "n_features": 24
+    },
+    "models/enrollment_plus_sem1__decision_tree.joblib": {
+      "sha256": "e4ada168fa4a4c82c1c4e325bca6f9955124889698761e583c9113cd8696172d",
+      "bytes": 6222,
+      "model": "decision_tree",
+      "feature_set": "enrollment_plus_sem1",
+      "n_features": 24
+    },
+    "models/enrollment_plus_sem1__random_forest.joblib": {
+      "sha256": "5082a327f71e6bf1e5832176ab88fce127697206847eb6aceaa6c3e297bf25d9",
+      "bytes": 7065748,
+      "model": "random_forest",
+      "feature_set": "enrollment_plus_sem1",
+      "n_features": 24
+    },
+    "models/majority_baseline.joblib": {
+      "sha256": "7b4d2b3cf965ac7c228f8a7b8ad3b7e6ef2244f21aa4ea8bfe7eccbab6fe676e",
+      "bytes": 2000,
+      "model": "majority_baseline",
+      "feature_set": "shared_majority",
+      "n_features": 18
+    }
+  },
+  "test_frame": {
+    "rows": 885,
+    "source": "A split_manifest.csv dataset_split == test; row_id one-to-one join",
+    "labels": [
+      "Dropout",
+      "Enrolled",
+      "Graduate"
+    ]
+  },
+  "evaluation_policy": {
+    "refit": false,
+    "hyperparameter_search": false,
+    "threshold_tuning": false,
+    "test_used_for_model_or_feature_selection": false,
+    "probability_mapping": "pipeline.classes_ -> prob_dropout/prob_enrolled/prob_graduate",
+    "zero_division": 0
+  },
+  "environment": {
+    "python": "3.14.3",
+    "executable": "D:\\DSC5001-Student-Dropout-Prediction-main\\.venv-c\\Scripts\\python.exe",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "machine": "AMD64",
+    "packages": {
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scikit-learn": "1.9.1",
+      "joblib": "1.6.0",
+      "matplotlib": "3.11.2"
+    }
+  },
+  "command": "python src/C_evaluation/evaluate_models.py --force",
+  "elapsed_seconds": 22.1,
+  "checks": {
+    "upstream_bytes_match_b_or_lf_equivalent": true,
+    "self_described_manifest_consistent": true,
+    "a_canonical_lf_hashes_match": true,
+    "split_columns": true,
+    "row_id_unique": true,
+    "split_counts": true,
+    "train_folds_complete": true,
+    "test_rows_have_no_fold": true,
+    "split_covers_every_record": true,
+    "train_test_disjoint": true,
+    "labels_are_protocol_labels": true,
+    "test_frame_rows": true,
+    "test_frame_matches_split_order": true,
+    "seven_model_files_present": true,
+    "model_bytes_match_catalog": true,
+    "feature_lists_contain_no_excluded_fields": true,
+    "b_frozen_commit_present": true
+  },
+  "outputs": {
+    "results/C_final/test_metrics.csv": {
+      "sha256": "23ec93b3824a2f06e61560c44ada9854df9af186bc1bb39fb7c8d0c3e63acc68",
+      "bytes": 2640
+    },
+    "results/C_final/test_predictions.csv": {
+      "sha256": "9c6d3b4bce3c2ef9b636f1cd9b5f7f1ba78ea577fb5b0ac6cc16dccac80ffc3d",
+      "bytes": 641577
+    },
+    "results/C_final/permutation_importance_representative.csv": {
+      "sha256": "50b1ce96748469c0aa14019a75466e01362ca527a203ee5d632ac7f82721ec99",
+      "bytes": 1047
+    },
+    "results/C_final/logistic_dropout_coefficients.csv": {
+      "sha256": "ba2444d3710cb3f8c3493d6fb8b2955fefc10f23a7baf064e187a72e707ce870",
+      "bytes": 725
+    },
+    "results/C_final/figures/01_test_macro_f1_by_model.png": {
+      "sha256": "6961e025a3bab14e59f7bd9f5053afcace59d9dcfbb15fada8c6358fae580db4",
+      "bytes": 60251
+    },
+    "results/C_final/figures/02_feature_set_gain.png": {
+      "sha256": "5c0551da544817db601503a6f4ee8c2324ea5bbfa82fd7ae46e01027ee4c5eba",
+      "bytes": 80064
+    },
+    "results/C_final/figures/03_confusion_matrices.png": {
+      "sha256": "b905f4f45401f5675012300fb108adb509b1da853d95d4608ea98114bec280f5",
+      "bytes": 146464
+    },
+    "results/C_final/figures/04_interpretation_random_forest.png": {
+      "sha256": "3359c4af6221a02ee4979158b9886b9b5d1c040af23c50bdd2cadba3e0e7e974",
+      "bytes": 90415
+    },
+    "results/C_final/figures/05_interpretation_logistic_regression.png": {
+      "sha256": "a8a894bec2060343d86a6831b2e5290fa4bfd8909082ead3a33d1cdfa4411b2e",
+      "bytes": 94120
+    }
+  }
+}
