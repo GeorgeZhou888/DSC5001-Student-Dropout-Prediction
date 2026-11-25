@@ -1,0 +1,597 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{parskip}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\graphicspath{{../../results/C_final/figures/}}
+
+\definecolor{codegray}{gray}{0.95}
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codegray},
+  frame=single,
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true
+}
+
+\newcommand{\Fone}{macro-F1}
+\newcommand{\Dropout}{\textit{Dropout}}
+\newcommand{\Enrolled}{\textit{Enrolled}}
+\newcommand{\Graduate}{\textit{Graduate}}
+
+\title{Predicting Student Dropout and Academic Success\\
+\large A Comparison of Enrolment and First-Semester Information}
+\author{%
+  Ruxuan ZHOU \and Mingxi ZHU \and Boyi WEI \and Mengqi YAN \and Yushu WU\\[4pt]
+  \normalsize Group: Zero Bias Hero\quad DSC5001 Group Project
+}
+\date{November 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Timely identification of students at risk of leaving higher education requires balancing prediction
+accuracy against intervention timing. This study evaluates how much adding first-semester academic
+records to enrolment-time data improves three-class classification of students into \Dropout{},
+\Enrolled{}, and \Graduate{}, addressing whether waiting one semester for academic performance data
+is operationally justified.
+
+Using 4,424 administrative records from a Portuguese polytechnic (2008--2019), we compare logistic
+regression, decision tree, and random forest models across two strictly defined feature sets: 18
+enrolment-time variables and 24 variables incorporating six first-semester academic measures. All
+models are tuned via five-fold stratified cross-validation on a fixed 80/20 split, a representative
+interpretation model is pre-specified prior to test access, and the held-out test set ($n = 885$) is
+evaluated once.
+
+Adding first-semester records increases test macro-F1 by 0.125--0.142 across all three model families
+and raises \Dropout{} recall by 0.116--0.148. The dominant predictive signal is not grade average
+alone, but the discrepancy between curricular units enrolled and units approved during the first
+semester. On the 24-variable feature set, logistic regression matches the random forest (test
+macro-F1 0.6442 vs.\ 0.6153, within cross-validation variance), offering comparable performance with
+direct coefficient interpretability. Across all models, the intermediate \Enrolled{} class remains
+substantially harder to classify (F1 0.30--0.45).
+
+These findings support a retrospective end-of-first-semester screening workflow rather than
+enrolment-only targeting. Practical deployment requires human review, non-punitive outreach,
+probability calibration, and regular fairness auditing.
+\end{abstract}
+
+\noindent\textbf{Keywords:} student dropout, academic success, multiclass classification,
+macro-F1, early support, reproducible machine learning
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+Institutions rarely have the advising capacity to intervene with every incoming student, which makes
+the timing and targeting of outreach a practical constraint. Predictive models can help prioritise
+student support, provided their evaluation reflects actual decision conditions. On the dataset
+studied here, a trivial classifier that predicts \Graduate{} for every student achieves nearly 50\%
+accuracy while identifying zero dropouts.
+
+A central trade-off in institutional early-warning design is information timing. Enrolment-time
+records allow immediate outreach before classes begin, whereas first-semester academic records
+require waiting a full term, delaying support. This report quantifies how much adding first-semester
+academic records to enrolment-time attributes improves prediction quality, and whether that gain
+justifies the one-term delay.
+
+\subsection{Gaps in prior work}
+
+Published studies on student dropout prediction frequently report accuracies above 80\%
+\citep{berens2019,aulck2016}, yet such figures can overstate operational readiness for three
+reasons. First, many analyses collapse the three natural administrative outcomes (\Dropout{},
+still-\Enrolled{}, and \Graduate{}) into a binary classification task \citep{marbouti2016}, masking
+the ambiguity of students who remain enrolled without a terminal outcome. Second, overall accuracy
+rewards majority-class performance; class-balanced metrics such as macro-F1 \citep{sokolova2009}
+make minority-class weaknesses explicit. Third, interpretation models are seldom pre-specified
+before test-set evaluation, creating a risk of post-hoc model selection.
+
+Comparisons across information time points are also frequently underspecified. When studies contrast
+enrolment-only features with early academic records without documenting exact variable boundaries,
+it remains unclear whether the resulting model supports real-time alerts or only retrospective
+end-of-term review.
+
+\subsection{Experimental approach}
+
+We conducted a controlled experiment on the UCI dataset ``Predict Students' Dropout and Academic
+Success'' \citep{realinho2021}, comprising 4,424 students from a single Portuguese polytechnic
+across 2008--2019 cohorts. To address the methodological issues above, we retained all three
+labelled outcomes (\Dropout{}, \Enrolled{}, and \Graduate{}) and selected models by macro-F1,
+weighting each class equally so that difficulty on the intermediate \Enrolled{} class cannot be
+obscured by majority-class accuracy.
+
+To maintain a clean temporal boundary, Feature Set 1 includes only the 18 variables available at
+enrolment, whereas Feature Set 2 adds six first-semester academic measures; second-semester
+variables and fields with ambiguous measurement timing are excluded. All hyperparameter tuning was
+confined to the training partition, the 24-variable random forest was pre-specified as the
+representative interpretation model solely from cross-validation scores, and the held-out test set
+was evaluated exactly once after all pipelines were frozen.
+
+\subsection{Research questions}
+
+The experiment addresses three questions:
+\begin{enumerate}[leftmargin=*]
+  \item How much does adding first-semester academic records improve three-class prediction over
+  enrolment-time information alone?
+  \item Do simpler linear models (logistic regression) perform comparably to more complex ensembles
+  (random forest), and do cross-validation rankings hold on the test set?
+  \item Which features and class-level error patterns govern whether these models are suitable for
+  an institutional support screening workflow?
+\end{enumerate}
+
+\subsection{Team workflow}
+
+The project was organised into five sequential stages across five team members. Ruxuan ZHOU
+(Member A) prepared the dataset and established the fixed split and feature definitions. Mingxi ZHU
+(Member B) tuned and froze six model pipelines alongside a majority-class baseline. Boyi WEI
+(Member C) ran the one-shot evaluation on the held-out test partition and generated the final
+metrics, predictions, figures, and interpretation tables. Mengqi YAN (Member D) integrated the
+technical outputs into this report, proposal, and reproducibility documentation. Yushu WU
+(Member E) cross-checked the reported numerical results against Member C's outputs and produced the
+presentation slides, bilingual script, recorded presentation, and A0 poster. A detailed breakdown of
+responsibilities and deliverables is provided in Appendix~\ref{app:contributions}.
+
+\section{Data and experimental protocol}
+
+\subsection{Data source and outcome}
+
+The dataset comes from the UCI Machine Learning Repository \citep{realinho2021} and records 4,424
+students enrolled at a Portuguese polytechnic between 2008 and 2019. Administrative enrolment and
+academic variables have minimal missingness, and both categorical attributes (such as marital
+status, application mode, and course) and numerical attributes (admission grade, age at enrolment,
+and previous qualification grade) are complete as exported from the institutional registration
+system.
+
+The target variable is an institution-level three-class label: \Dropout{} indicates that a student
+left the programme or institution without completing the degree; \Enrolled{} indicates that the
+student was still enrolled at data collection; and \Graduate{} indicates completion of all degree
+requirements. Two definitional properties affect interpretation. First, \Dropout{} is
+institution-specific rather than a measure of lifetime educational attainment, as a student who
+transferred and graduated elsewhere is still recorded as a dropout here. Second, \Enrolled{} is a
+censored intermediate state combining students who will eventually graduate with those who will
+subsequently leave.
+
+During data preparation, Member A preserved the raw predictor values without modification, assigned
+a stable \texttt{row\_id} prior to column-name normalisation, and retained all 4,424 observations.
+In the held-out test partition ($n = 885$), class counts are 284 \Dropout{} (32.1\%), 159
+\Enrolled{} (18.0\%), and 442 \Graduate{} (49.9\%). Because a constant \Graduate{} classifier
+attains 0.4994 accuracy on this split, accuracy alone would mask poor minority-class detection.
+Finally, because the data come from a single Portuguese polytechnic covering 2008--2019 cohorts,
+the results should not be assumed to generalise directly to research universities, other national
+systems, or post-2020 cohorts affected by the COVID-19 pandemic.
+
+\subsection{Fixed split and leakage controls}
+
+The experimental protocol fixes random seed 42, a stratified 80/20 outer train/test split (3,539
+training rows and 885 test rows), and five stratified cross-validation folds within the training
+set. The split manifest records \texttt{row\_id}, \texttt{dataset\_split}, and \texttt{cv\_fold},
+with no cross-validation fold assigned to test rows. All learned preprocessing steps are fitted
+strictly inside each training fold, and the test partition is never accessed during feature
+selection, hyperparameter tuning, threshold adjustment, or model selection.
+
+Model selection uses macro-F1 as the primary metric:
+\begin{equation}
+  \mathrm{macro\mbox{-}F1} = \frac{1}{3}\sum_{c\in\{\Dropout,\Enrolled,\Graduate\}}
+  \mathrm{F1}_c,
+\end{equation}
+weighting all three classes equally. \Dropout{} precision and recall are reported alongside
+macro-F1 as operational secondary metrics, since a support workflow must balance outreach volume
+against missed at-risk students rather than optimising solely for the majority \Graduate{} class.
+
+\subsection{Feature sets}
+
+Feature Set 1 comprises 18 variables observed at enrolment, while Feature Set 2 adds six
+first-semester academic variables (Table~\ref{tab:features}). Second-semester variables, fields
+with uncertain measurement timing, and macroeconomic indicators whose availability at enrolment is
+not clearly documented are excluded. Target labels, row identifiers, split indicators, and fold
+indices are never used as predictors.
+
+\begin{table}[H]
+\centering
+\caption{Feature sets used in the fixed experiment.}
+\label{tab:features}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth}X}
+\toprule
+Feature set & Variables \\
+\midrule
+Enrolment (18) & Marital status; application mode and order; course; attendance; previous
+qualification and grade; nationality; parents' qualification and occupation; admission grade;
+displacement; educational special needs; gender; age at enrolment; international status. \\
+Enrolment + first semester (24) & All 18 enrolment variables, plus credited, enrolled,
+evaluated, and approved curricular units; first-semester grade; and units without evaluations. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Models and reproducibility}
+
+\subsection{Model selection rationale}
+
+We evaluated three model families spanning the complexity--interpretability spectrum
+\citep{hastie2009}. Logistic regression provides a linear baseline with signed feature coefficients
+that can be communicated directly to academic advisors, though it is restricted to linear decision
+boundaries. Decision trees learn axis-aligned partitions that capture non-linear interactions as
+explicit rule sets, at the cost of higher variance and overfitting risk when depth is unconstrained.
+Random forests \citep{breiman2001} average across an ensemble of trees to reduce variance and
+improve robustness, with feature contributions assessed via permutation importance
+\citep{strobl2008}, although individual predictions are less directly traceable than in linear or
+single-tree models.
+
+Neural networks were excluded because 4,424 tabular records are small for deep architectures;
+support vector machines showed comparable preliminary performance to logistic regression with lower
+interpretability; and gradient boosting was omitted as additional ensemble complexity was outside
+the project scope.
+
+\subsection{Feature engineering and preprocessing}
+
+Across the full 24-variable set, 14 predictors are categorical (marital status, application mode,
+course, attendance, previous qualification, nationality, parents' qualification and occupation,
+displacement, educational special needs, gender, and international status) and 10 are numerical
+(application order, age at enrolment, admission grade, previous qualification grade, and the six
+first-semester academic measures). All preprocessing is fitted inside each cross-validation fold to
+prevent data leakage.
+
+Categorical predictors are one-hot encoded, and numerical predictors are standardised to zero mean
+and unit variance using \texttt{StandardScaler} fitted on the training fold and applied to
+validation and test splits. No manual polynomial or interaction terms were engineered; tree-based
+models capture feature interactions through recursive splits, whereas logistic regression operates on
+the linear feature representation.
+
+\subsection{Hyperparameter tuning}
+
+Member B conducted grid search with five-fold stratified cross-validation on the 3,539 training
+rows, selecting the configuration that maximised mean validation macro-F1 across 52 candidate
+configurations in total. Table~\ref{tab:hyperparams} summarises the search spaces and selected
+hyperparameters for both feature sets. Balanced class weighting was selected in five of the six
+pipelines, reflecting the class imbalance (50\% \Graduate{}, 32\% \Dropout{}, 18\% \Enrolled{}).
+
+\begin{table}[H]
+\centering
+\caption{Hyperparameter search spaces and selected configurations from five-fold cross-validation.}
+\label{tab:hyperparams}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.15\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.20\textwidth}>{\raggedright\arraybackslash}p{0.20\textwidth}}
+\toprule
+Model & Search space & Selected (18 vars) & Selected (24 vars) \\
+\midrule
+Logistic regression & $C \in \{0.001, 0.01, 0.1, 1.0, 10.0\}$; class weight $\in \{\text{None}, \text{balanced}\}$ & $C = 0.1$, balanced & $C = 1.0$, balanced \\
+Decision tree & Max depth $\in \{3, 6, 9, 12, \text{None}\}$; min leaf $\in \{1, 5, 10, 20\}$; class weight $\in \{\text{None}, \text{balanced}\}$ & Unconstrained depth, min leaf 20, balanced & Max depth 6, min leaf 20, no weighting \\
+Random forest & 100 trees; max depth $\in \{6, 9, 12, \text{None}\}$; min leaf $\in \{1, 5, 10\}$; class weight $\in \{\text{None}, \text{balanced}\}$ & Max depth 12, min leaf 1, balanced & Unconstrained depth, min leaf 1, balanced \\
+\bottomrule
+\end{tabularx}
+\normalsize
+\end{table}
+
+\subsection{Model freezing and representative selection}
+
+Following hyperparameter selection, Member B refitted each chosen pipeline on all 3,539 training
+rows and froze the serialised models. Based solely on training cross-validation performance
+(Table~\ref{tab:cv}), the 24-variable random forest (CV macro-F1 $0.6449 \pm 0.0172$) was fixed as
+the representative model for interpretation before any test-set evaluation took place. It is
+retained as the representative model throughout the interpretation analysis even though logistic
+regression scores slightly higher on the test split, avoiding post-hoc model selection.
+
+\begin{table}[H]
+\centering
+\caption{Training-only cross-validation results reported by Member B. Values are mean macro-F1
+with fold standard deviation.}
+\label{tab:cv}
+\begin{tabular}{llr}
+\toprule
+Feature set & Model & CV macro-F1 \\
+\midrule
+Enrolment & Logistic regression & 0.5235 $\pm$ 0.0100 \\
+Enrolment & Decision tree & 0.4552 $\pm$ 0.0342 \\
+Enrolment & Random forest & 0.5190 $\pm$ 0.0085 \\
+Enrolment + first semester & Logistic regression & 0.6444 $\pm$ 0.0159 \\
+Enrolment + first semester & Decision tree & 0.6016 $\pm$ 0.0141 \\
+Enrolment + first semester & Random forest & 0.6449 $\pm$ 0.0172 \\
+Majority baseline & Most frequent class & 0.2220 $\pm$ 0.0002 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Results}
+
+\subsection{Held-out test performance}
+
+Table~\ref{tab:test} presents the one-shot evaluation on the 885 held-out students. Every trained
+pipeline substantially outperforms the majority-class baseline (macro-F1 0.2221), confirming that
+both enrolment and first-semester features contain predictive signal. Across all three model
+families, adding the six first-semester variables raises test macro-F1 by 0.125--0.142
+(Figure~\ref{fig:macro-f1} and Figure~\ref{fig:feature-gain}) and increases \Dropout{} recall by
+0.116--0.148. Both the direction and magnitude of this gain mirror the cross-validation results,
+indicating that the improvement is not an artefact of the held-out split.
+
+On the 24-variable feature set, logistic regression attains the highest single test macro-F1
+(0.6442), while the pre-specified representative random forest reaches 0.6153. The interpretation of
+this 0.029 difference is examined next.
+
+\begin{table}[H]
+\centering
+\caption{Final held-out test results ($n = 885$). Entry uses 18 enrolment features; S1 adds six
+first-semester features. Logistic, Tree, and Forest denote logistic regression, decision tree, and
+random forest.}
+\label{tab:test}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrrr}
+\toprule
+Feature set & Model & Macro-F1 & \shortstack{Dropout\\precision} & \shortstack{Dropout\\recall} & Accuracy & Log-loss \\
+\midrule
+Entry & Logistic & 0.5024 & 0.5618 & 0.5282 & 0.5390 & 0.9723 \\
+Entry & Tree & 0.4488 & 0.4739 & 0.4789 & 0.4757 & -- \\
+Entry & Forest & 0.4907 & 0.5217 & 0.5070 & 0.5322 & -- \\
+Entry + S1 & Logistic & 0.6442 & 0.7439 & 0.6444 & 0.6881 & 0.7286 \\
+Entry + S1 & Tree & 0.5873 & 0.6820 & 0.6268 & 0.6836 & -- \\
+Entry + S1 & Forest & 0.6153 & 0.7099 & 0.6549 & 0.6904 & -- \\
+Majority & Most frequent & 0.2221 & 0.0000 & 0.0000 & 0.4994 & -- \\
+\bottomrule
+\end{tabular}
+\normalsize
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.43\textheight,keepaspectratio]{01_test_macro_f1_by_model.png}
+\caption{Test macro-F1 for the six trained pipelines and the majority baseline.}
+\label{fig:macro-f1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.43\textheight,keepaspectratio]{02_feature_set_gain.png}
+\caption{Gain in macro-F1 and \Dropout{} recall from adding the first-semester feature block.}
+\label{fig:feature-gain}
+\end{figure}
+
+\subsection{Validation versus test ranking}
+
+Comparing Table~\ref{tab:cv} with Table~\ref{tab:test} addresses the second research question. Five
+of the six models show a small decrease from cross-validation to test macro-F1 (mean shrinkage
+0.017), consistent with mild selection optimism from tuning hyperparameters on the training split.
+At the top of the 24-variable ranking, logistic regression retains its validation score almost
+unchanged ($0.6444 \to 0.6442$), whereas the random forest decreases by 0.030 ($0.6449 \to 0.6153$).
+
+Although the resulting 0.029 test difference favours logistic regression, it lies within the
+fold-to-fold standard deviations observed in cross-validation ($\pm 0.0159$ for logistic regression;
+$\pm 0.0172$ for random forest) and should not be over-interpreted as a stable ranking reversal. A
+single 885-row test set provides no formal confidence interval; with 284 true \Dropout{} cases,
+fluctuations on the order of $\pm 0.02$ macro-F1 fall within sampling variation, and formal
+significance testing would require repeated outer splits or bootstrap resampling. Accordingly,
+logistic regression and random forest are statistically indistinguishable on the 24-variable feature
+set, while both clearly outperform the decision tree (0.5873) and the majority baseline (0.2221).
+Because the random forest was pre-specified prior to test evaluation, it remains the representative
+model for feature-importance analysis below.
+
+\subsection{Class-level behaviour}
+
+Aggregate macro-F1 conceals substantial variation across classes. With 24 variables, \Dropout{}
+precision ranges from 0.68 to 0.74 and recall from 0.63 to 0.65, while \Graduate{} is classified
+most reliably (F1 0.795--0.805). By contrast, \Enrolled{} is consistently weak across every model,
+with F1 between 0.30 and 0.45.
+
+Three factors account for the difficulty of the \Enrolled{} class. First, it has the smallest sample
+size in the test split (159 students, 18.0\%), compared with 442 \Graduate{} and 284 \Dropout{}
+cases, and balanced class weights only partially offset this imbalance. Second, ``still enrolled''
+is an unresolved administrative state that mixes students on track to graduate with others who will
+later leave. Third, key determinants of continued persistence, such as financial strain, employment
+hours, and transfer intentions, are absent from the administrative record.
+
+The confusion matrices in Figure~\ref{fig:confusion} illustrate the operational consequence of these
+errors. Among the 284 true \Dropout{} students, the 24-variable logistic regression misclassifies 32
+as \Graduate{}, compared with 57 for the random forest and 70 for the decision tree. Models can
+therefore help prioritise outreach, but the absence of a dropout flag should never be treated as
+evidence that a student is not at risk.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.55\textheight,keepaspectratio]{03_confusion_matrices.png}
+\caption{Confusion matrices for the six trained pipelines on the held-out test set.}
+\label{fig:confusion}
+\end{figure}
+
+For probability estimates, the 24-variable logistic regression achieves a test log-loss of 0.7286.
+Log-loss is not reported for the tree-based models in the final summary table, and probability
+calibration was not formally assessed; consequently, predicted probabilities should not be treated
+as calibrated individual risk scores without dedicated calibration checks.
+
+\section{Model interpretation}
+
+\subsection{Representative random forest: permutation importance}
+
+Permutation importance for the pre-specified 24-variable random forest (10 repeats, seed 42)
+concentrates heavily on first-semester academic outcomes (Table~\ref{tab:importance} and
+Figure~\ref{fig:rf-importance}). Approved first-semester curricular units alone account for a mean
+macro-F1 drop of 0.1078, nearly five times larger than the second-ranked variable (first-semester
+evaluations, 0.0226). Demographic and background attributes, including nationality, marital status,
+parental occupation, and special needs status, sit at or below the noise floor, with occasional
+slightly negative values typical of correlated predictors under permutation. Predictive signal
+therefore stems predominantly from observed first-semester academic progress rather than static
+enrolment characteristics.
+
+\begin{table}[H]
+\centering
+\caption{Top permutation importance features for the representative random forest (mean macro-F1
+drop over 10 repeats, seed 42). Features below rank 5 are at or near the noise floor.}
+\label{tab:importance}
+\begin{tabular}{lrr}
+\toprule
+Feature & Mean macro-F1 drop & SD \\
+\midrule
+Curricular units 1st sem (approved) & 0.1078 & 0.0090 \\
+Curricular units 1st sem (evaluations) & 0.0226 & 0.0083 \\
+Curricular units 1st sem (grade) & 0.0160 & 0.0109 \\
+Course & 0.0122 & 0.0083 \\
+Mother's qualification & 0.0055 & 0.0064 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.48\textheight,keepaspectratio]{04_interpretation_random_forest.png}
+\caption{Permutation importance for the pre-specified representative random forest (24-variable
+feature set). Bars show mean macro-F1 decrease over 10 repeats; only features with positive mean
+importance are shown.}
+\label{fig:rf-importance}
+\end{figure}
+
+\subsection{Logistic regression: signed coefficients}
+
+The 24-variable logistic regression clarifies the direction of these associations
+(Figure~\ref{fig:logistic-coefficients}). For the \Dropout{} class, the largest coefficient is
+strongly negative for approved first-semester units ($-1.77$), indicating a protective effect.
+Conversely, units enrolled ($+0.85$) and credited ($+0.44$) carry positive coefficients, while
+first-semester grade is protective ($-0.34$) and age at enrolment has a modest positive association
+with dropout ($+0.19$).
+
+Together, these coefficients indicate that students who register for many units but convert few into
+approvals are those most strongly flagged for dropout risk. Because unit enrolment and approval
+conversion are observable academic behaviours during the first term, they offer advising staff a
+concrete basis for review. For instance, a student enrolled in six units with zero approvals differs
+markedly in predicted risk from one who completes all six, and this gap dominates the model's
+decision boundary.
+
+\begin{figure}[H]
+\centering
+\makebox[\textwidth][c]{\hspace*{-1.0cm}\includegraphics[width=0.98\textwidth,height=0.48\textheight,keepaspectratio]{05_interpretation_logistic_regression.png}}
+\caption{Signed \Dropout{}-class coefficients for the 24-variable logistic regression. Negative
+coefficients (approved units, grade) reduce dropout probability; positive coefficients (enrolled
+units, credited units, age) increase it.}
+\label{fig:logistic-coefficients}
+\end{figure}
+
+Two interpretive caveats apply. First, both importance rankings and regression coefficients reflect
+model-and-sample associations rather than causal effects: correlated predictors can share or
+suppress each other's weights, and the contrast between enrolled and approved units is partly
+structural because a student cannot approve units without enrolling in them. Second, these
+summaries describe the fitted pipelines on this held-out sample and require replication on external
+cohorts before broader generalisation.
+
+\section{Discussion}
+
+\subsection{Synthesis of main findings}
+
+Enrolment-time predictors alone yield test macro-F1 around 0.45--0.50, exceeding the majority
+baseline but remaining too weak to anchor high-touch targeted intervention. Incorporating six
+first-semester academic variables raises test macro-F1 to 0.59--0.64 across all model families on
+unseen data, showing that the one-semester wait yields a substantial gain in screening quality.
+
+Three secondary findings qualify this conclusion. First, added model complexity does not yield a
+measurable advantage here: 24-variable logistic regression matches the random forest within
+cross-validation noise (0.6442 vs.\ 0.6153), makes fewer severe false-reassurance errors (32 vs.\ 57
+true dropouts misclassified as \Graduate{}), and exposes signed coefficients that advisors can
+inspect directly. Second, the predictive signal is primarily behavioural rather than demographic,
+driven by first-semester unit approval conversion rather than static background attributes. Third,
+weak performance on the \Enrolled{} class (F1 0.30--0.45) reflects a structural limitation of the
+label itself, as ``still enrolled'' is an unresolved status that administrative records alone cannot
+cleanly separate from eventual graduation or departure.
+
+\subsection{Operational use and safeguards}
+
+The results support a retrospective end-of-first-semester screening workflow. On the held-out test
+set, the 24-variable logistic regression flags 246 of 885 students as \Dropout{} at 74.4\% precision,
+of whom 183 are true dropouts. An advising office can use such a list to prioritise outreach
+(tutoring, counselling, financial-aid review, or course-load adjustment) while keeping support open
+to unflagged students. A lighter-touch check at enrolment remains possible in principle, though its
+lower accuracy means primary intervention resources are better allocated at the end of the first
+semester.
+
+Any institutional deployment requires concrete governance safeguards. Model outputs should inform
+human review rather than trigger automated denial of support, admission, or financial aid, and
+flagging should be framed strictly as an invitation to non-punitive assistance. Because the models
+include age, nationality, gender, and parental background as inputs, flagging rates must be audited
+across demographic subgroups prior to deployment. In addition, shifting cohort composition and
+institutional policies require periodic retraining and revalidation, and predicted probabilities
+must undergo calibration checks before being used as quantitative risk scores, particularly for
+tree-based models whose leaf proportions are not calibrated probabilities.
+
+\subsection{Scope of inference}
+
+This study estimates predictive associations at two administrative time points. It does not
+establish that poor first-semester unit conversion causes dropout, nor does it measure whether
+advising outreach improves student retention. Evaluating intervention effectiveness requires a
+separate randomised or quasi-experimental study comparing outcomes between supported and unsupported
+cohorts.
+
+\section{Limitations and future directions}
+
+Several methodological and data limitations constrain how these findings should be interpreted and
+point to directions for future work. From a statistical standpoint, evaluation rests on a single
+885-row held-out split without confidence intervals; with 284 true \Dropout{} cases, swings of
+roughly $\pm 0.02$ macro-F1 lie within sampling variation. Future studies should apply nested
+cross-validation or bootstrap resampling to quantify uncertainty, and should evaluate probability
+calibration explicitly via calibration curves rather than relying on logistic log-loss alone.
+
+Definitional and temporal constraints also limit operational scope. The intermediate \Enrolled{}
+class (159 test cases; F1 0.30--0.45) conflates future graduates with future dropouts and lacks
+non-administrative predictors such as financial pressure, employment load, or transfer intent;
+incorporating such variables alongside cost-sensitive learning could improve sensitivity on this
+group. Similarly, the \Dropout{} label tracks institutional departure rather than lifetime degree
+completion, since transfers who graduate elsewhere remain coded as dropouts. Because first-semester
+variables become available only after a full term and the dataset contains no individual withdrawal
+dates, the comparison represents a retrospective end-of-term snapshot rather than a real-time alert;
+dynamic tracking across multiple within-semester checkpoints would be more actionable.
+
+Finally, external validity, fairness, and causality remain open. The dataset reflects a single
+Portuguese polytechnic over 2008--2019 cohorts, so external validation across other institutions,
+educational systems, and post-pandemic cohorts is necessary before generalising these results.
+Before any operational use, group-level fairness audits are required for the demographic inputs,
+and a randomised or quasi-experimental evaluation is needed to test whether model-guided outreach
+actually reduces student attrition.
+
+\section{Conclusion}
+
+Adding six first-semester academic variables to enrolment-time records consistently improves
+three-class student outcome prediction, raising held-out test macro-F1 by 0.125--0.142 across
+logistic regression, decision tree, and random forest pipelines. Enrolment-only models are too weak
+to justify intensive targeted outreach on their own, whereas end-of-first-semester models provide a
+substantively stronger basis for prioritising student support.
+
+On the richer 24-variable feature set, logistic regression performs comparably to the random forest
+while offering transparent signed coefficients that highlight an actionable behavioural pattern:
+students who enrol in many curricular units but convert few into approvals are those most reliably
+flagged for dropout risk. At the same time, persistent difficulty on the intermediate \Enrolled{}
+class underscores that model predictions cannot reliably separate unresolved trajectories. Deployed
+as a retrospective end-of-first-semester screening aid, with human review, non-punitive outreach,
+probability calibration, and regular fairness audits, these models can help advisors prioritise who
+to contact without automating high-stakes decisions.
+
+\section*{Data and code availability}
+
+All data-processing, model-training, evaluation, and verification scripts are archived in the
+project repository. Exact commands, configuration files, frozen model paths, output tables, and
+runtime provenance are documented in Appendix~\ref{app:code}. The underlying dataset is distributed
+by the UCI Machine Learning Repository under a CC BY 4.0 licence, and full source citation and
+provenance metadata are retained in the repository.
+
+\appendix
+\input{code_appendix.tex}
+
+{\small
+\setlength{\bibsep}{2pt plus 1pt}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+}
+
+\end{document}
